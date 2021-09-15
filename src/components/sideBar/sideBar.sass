@@ -1,13 +1,18 @@
+@import ../../variables
+
 .sideBar
+    position: fixed
+    width: 64px
+    height: 100vh
     display: flex
     flex-direction: column
     justify-content: space-between
     align-items: center
-    background: #000
+    background: $main_black
     padding: 32px 16px
 
     &__btn-language
-        color: #0EC261
+        color: $main_accent
         font-weight: 700
         font-size: 13px
         line-height: 15px
@@ -15,11 +20,12 @@
         border: 1px solid transparent
         border-radius: 50%
         cursor: pointer
+        transition: all 0.3s
 
         &:hover
-            color: #fff
-            border-color: #fff
+            color: $main_white
+            border-color: $main_white
 
         &:active
-            color: #0EC261
-            border-color: #fff
+            color: $main_accent
+            border-color: $main_white

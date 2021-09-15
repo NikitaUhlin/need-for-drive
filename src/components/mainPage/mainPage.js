@@ -5,32 +5,36 @@ import Footer from "./footer/footer";
 import Slider from "./slider/slider";
 
 import "./mainPage.sass"
+import Button from "../button/button";
 
 function MainPage() {
 
     return (
-        <div className="mainPage">
+        <div>
             <SideBar />
-            <div>
-                <Header />
-                <div>
-                    <div>
+            <div className="mainPage">
+                <div className="mainPage__container">
+                    <Header />
+                    <div className="mainPage__content">
                         <div>
-                            Каршеринг
+                            <div className="mainPage__title">
+                                Каршеринг
+                            </div>
+                            <div className="mainPage__subtitle">
+                                Need for drive
+                            </div>
                         </div>
-                        <div>
-                            Need for drive
+                        <div className="mainPage__description">
+                            Поминутная аренда авто твоего города
                         </div>
+                        <Button>Забронировать</Button>
                     </div>
-                    <div>
-                        Поминутная аренда авто твоего города
-                    </div>
-                    <button>Забронировать</button>
+                    <Footer />
                 </div>
-                <Footer />
+                <Slider />
             </div>
-            <Slider />
         </div>
+
     )
 }
 
