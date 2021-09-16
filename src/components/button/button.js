@@ -1,11 +1,23 @@
 import React from "react";
+import classNames from "classnames";
 
-import "./button.sass"
+import styles from "./button.sass"
 
-const Button = ({ children }) => {
+let cx = classNames.bind(styles)
+
+const Button = ({ mode, children }) => {
+
+    const className = cx({
+        appButton: true,
+        darkGreenButton: mode === "darkGreen",
+        blueButton: mode === "blue",
+        redButton: mode === "red",
+        purpleButton: mode === "purple"
+    })
+
     return (
         <button
-            className="appButton"
+            className={className}
         >{children}</button>
     )
 }
