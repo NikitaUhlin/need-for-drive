@@ -4,7 +4,7 @@ import './hamburgerBtn.sass'
 function HamburgerBtn() {
     return (
         <div>
-            <button className="toggle-hamburger toggle-hamburger__animx">
+            <button className="toggleHamburger toggleHamburger__animx">
                 <span>menu toggle</span>
             </button>
         </div>

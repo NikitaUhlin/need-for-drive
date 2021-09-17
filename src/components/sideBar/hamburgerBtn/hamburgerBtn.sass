@@ -9,12 +9,11 @@ $button-border-radius: 3px
 $button-transistion-duration: 0.3s // The transition duration
 /* end var */
 
-*
-  box-sizing: border-box
+@import ../../../variables
 
-/* button starting stylings ------------------------------- */
-.toggle-hamburger
-  background-color: #121212
+/* button starting stylings ------------------------------ */
+.toggleHamburger
+  background-color: $main_black
   color: #ccc
   display: block
   position: relative
@@ -58,8 +57,7 @@ $button-transistion-duration: 0.3s // The transition duration
       bottom: -$bar-thickness - $button-bar-space
 
   /* --- animate to X --- */
-  &.toggle-hamburger__animx
-    background-color: #121212
+  &.toggleHamburger__animx
     span
       transition: background 0s $button-transistion-duration
       &::before,
@@ -84,3 +82,12 @@ $button-transistion-duration: 0.3s // The transition duration
         &::after
           bottom: 0
           transform: rotate(-45deg)
+
+@media ( max-width: 767px )
+  .toggleHamburger
+    background: $main_white
+    span
+      background: $main_black
+      &::before,
+      &::after
+        background: $main_black

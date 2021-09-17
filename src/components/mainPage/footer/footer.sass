@@ -12,7 +12,20 @@
     &__link
         text-decoration: none
         color: $main_black
+        font-size: 13px
         transition: 0.3s
 
         &:hover
             color: $main_accent
+
+@media ( max-width: 767px)
+    .footer
+        &__content
+            background: $main_black
+            padding: 16px
+            flex-direction: column-reverse
+            align-items: flex-end
+
+        &__link
+            color: $main_accent
+            padding-bottom: 8px
