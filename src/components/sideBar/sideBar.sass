@@ -2,14 +2,16 @@
 
 .sideBar
     position: fixed
-    width: 64px
+    width: calc(64px + 50%)
     height: 100vh
-    display: flex
-    flex-direction: column
-    justify-content: space-between
-    align-items: center
     background: $main_black
-    padding: 32px 16px
+    padding: 300px 150px
+    z-index: 2
+    left: -50%
+    transition: all 0.3s ease-in-out
+
+    &.isMenuOpen
+        left: -32px
 
     &__btn-language
         color: $main_accent
@@ -21,6 +23,11 @@
         border-radius: 50%
         cursor: pointer
         transition: all 0.3s
+        position: absolute
+        z-index: 2
+        margin-left: 8px
+        margin-bottom: 15px
+        bottom: 0
 
         &:hover
             color: $main_white
@@ -29,6 +36,43 @@
         &:active
             color: $main_accent
             border-color: $main_white
+        &.isMenuOpen
+            left: 0
+
+    &__link
+        color: $main_white
+        font-weight: 500
+        font-size: 32px
+        line-height: 37px
+        margin-bottom: 14px
+        transition: 0.3s
+        cursor: pointer
+
+        &:hover
+            color: $main_accent
+
+    &__social
+        margin-top: 47px
+        &-item
+            margin-right: 24px
+            cursor: pointer
+            &:hover
+                color: $main_accent
+
+.milkShadow
+    position: fixed
+    top: 0
+    right: 0
+    left: 0
+    height: 0
+    background-color: #000
+    opacity: 0
+    transition: opacity 0.5s
+    z-index: 1
+
+    &.isMenuOpen
+        height: 100%
+        opacity: 0.81
 
 @media ( max-width:  767px)
     .sideBar

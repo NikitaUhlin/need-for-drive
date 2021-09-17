@@ -14,11 +14,11 @@ $button-transistion-duration: 0.3s // The transition duration
 /* button starting stylings ------------------------------ */
 .toggleHamburger
   background-color: $main_black
-  color: #ccc
+  color: $main_white
   display: block
-  position: relative
+  position: absolute
   overflow: hidden
-  margin: 0
+  margin: 32px 16px
   padding: 0
   width: $button-width
   height: $button-height
@@ -27,7 +27,8 @@ $button-transistion-duration: 0.3s // The transition duration
   appearance: none
   box-shadow: none
   border: none
-  border-radius: none
+  z-index: 3
+
   cursor: pointer
   transition: background $button-transistion-duration
   &:focus
@@ -69,12 +70,12 @@ $button-transistion-duration: 0.3s // The transition duration
       &::after
         transition-property: bottom, \transform
     /* when menu open: */
-    &.is-active
+    &.isActive
       span
         background: none
         &::before,
         &::after
-          background-color: darken($animx-color, 25%)
+          background-color: $animx-color
           transition-delay: 0s, $button-transistion-duration
         &::before
           top: 0

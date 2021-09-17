@@ -1,10 +1,19 @@
 import React from "react";
-import './hamburgerBtn.sass'
+import classNames from "classnames";
 
-function HamburgerBtn() {
+import styles from './hamburgerBtn.sass'
+
+let cx = classNames.bind(styles)
+
+const HamburgerBtn = ({ openMenu, isMenuOpen }) => {
+    const className = cx({
+        isActive: isMenuOpen
+    })
     return (
         <div>
-            <button className="toggleHamburger toggleHamburger__animx">
+            <button
+                onClick={openMenu}
+                className={`toggleHamburger toggleHamburger__animx ${className}`}>
                 <span>menu toggle</span>
             </button>
         </div>
