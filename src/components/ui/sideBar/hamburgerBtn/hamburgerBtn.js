@@ -1,15 +1,15 @@
 import React from "react";
 import classNames from "classnames";
 
-import styles from './hamburgerBtn.sass'
+import styles from './hamburgerBtn.module.sass'
 
 let cx = classNames.bind(styles)
 
 const HamburgerBtn = ({ openMenu, isMenuOpen }) => {
     const className = cx({
-        "toggleHamburger": true,
-        "toggleHamburger__animx": true,
-        isActive: isMenuOpen
+        [styles.toggleHamburger]: true,
+        [styles.toggleHamburger__animx]: true,
+        [styles.isActive]: isMenuOpen
     })
     return (
         <div>

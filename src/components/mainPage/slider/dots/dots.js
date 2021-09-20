@@ -1,15 +1,15 @@
 import React from "react";
 import classNames from "classnames";
 
-import styles from "./dots.sass"
+import styles from "./dots.module.sass"
 
 let cx = classNames.bind(styles)
 
 const Dot = ({ active }) => {
 
     const className = cx({
-        dot: true,
-        dotActive: active
+        [styles.dot]: true,
+        [styles.dotActive]: active
     })
 
     return (
@@ -26,7 +26,7 @@ const Dots = ({ countSlides, activeIndex }) => {
     }
     return (
         <div
-            className="dots"
+            className={styles.dots}
         >
             {dots}
         </div>

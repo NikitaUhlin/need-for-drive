@@ -1,7 +1,7 @@
 import React from "react";
 import MainPage from "../mainPage/mainPage";
 
-function App() {
+const App = () => {
 
     return (
         <div>

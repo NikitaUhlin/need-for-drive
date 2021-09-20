@@ -1,0 +1,28 @@
+@import ../../../variables
+
+.content
+    display: flex
+    justify-content: space-between
+
+.logo
+    font-weight: 700
+    font-size: 30px
+    color: $main_accent
+.mapPoint
+    display: flex
+    align-items: center
+    cursor: pointer
+    &City
+        color: $main_gray
+        font-size: 14px
+        padding-left: 6px
+
+@media ( max-width:  767px)
+    .content
+        width: 100%
+        display: block
+        text-align: right
+        margin-top: 14px
+        padding: 0 16px
+    .mapPoint
+        justify-content: flex-end

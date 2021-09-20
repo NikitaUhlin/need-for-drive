@@ -2,9 +2,10 @@ import React, { useState, Children, useRef, useEffect } from "react";
 import SliderContent from "./sliderContent/sliderContent";
 import Arrow from "./arrow/arrow";
 import Dots from "./dots/dots";
-import useCurrentWidth from "../../../utilities/useCurrentWidth";
 
-import './slider.sass'
+import useCurrentWidth from "../../../utils/hooks/useCurrentWidth";
+
+import styles from './slider.module.sass'
 
 const Slider = ({ children, autoPlayInterval }) => {
 
@@ -81,7 +82,7 @@ const Slider = ({ children, autoPlayInterval }) => {
 
     return (
         <div
-            className="slider"
+            className={styles.content}
             ref={sliderRef}
         >
             <SliderContent

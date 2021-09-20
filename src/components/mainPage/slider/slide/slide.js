@@ -1,12 +1,13 @@
 import React from "react";
-import './slide.sass'
+
+import styles from './slide.module.sass'
 
 const Slide = ({ children }) => {
 
     return (
-        <div
-            className="slide"
-        >{children}</div>
+        <div className={styles.slide}>
+            {children}
+        </div>
     )
 }
 

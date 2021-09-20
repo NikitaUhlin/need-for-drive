@@ -1,18 +1,19 @@
 import React from "react";
-import leftArrow from "../../../../assets/icons/leftArrow.svg";
-import rightArrow from "../../../../assets/icons/rightArrow.svg";
 import classNames from "classnames";
 
-import styles from "./arrow.sass"
+import leftArrow from "../../../../assets/icons/leftArrow.svg";
+import rightArrow from "../../../../assets/icons/rightArrow.svg";
+
+import styles from "./arrow.module.sass"
 
 let cx = classNames.bind(styles)
 
 const Arrow = ({ direction, handleClick }) => {
 
     const classNameArrow = cx({
-        arrow: true,
-        arrowRight: direction === "right",
-        arrowLeft: direction === "left"
+        [styles.arrow]: true,
+        [styles.arrowRight]: direction === "right",
+        [styles.arrowLeft]: direction === "left"
     })
 
     const classNameArrowIcon = cx({

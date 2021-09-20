@@ -1,15 +1,16 @@
 import React from "react";
-import "./footer.sass"
 
-function Footer() {
+import styles from "./footer.module.sass"
+
+const Footer = () => {
 
     return (
-        <div className="footer__content">
-            <div className="footer__title">
+        <div className={styles.content}>
+            <div className={styles.title}>
                 © 2016-2021 «Need for drive»
             </div>
             <a
-                className="footer__link"
+                className={styles.link}
                 href="tel:+74952342244"
             >8 (495) 234-22-44</a>
         </div>

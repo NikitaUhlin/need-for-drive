@@ -1,16 +1,18 @@
 import React from "react";
 
-import './sliderContent.sass'
+import styles from './sliderContent.module.sass'
 
 const SliderContent = ({ translate, transition, width, children }) => {
 
     return (
-        <div className="sliderContent"
+        <div className={styles.sliderContent}
             style={{
                 transform: `translateX(-${translate}px)`,
                 transition: `transform ease-out ${transition}s`,
                 width: `${width}px`
-            }}>{children}</div>
+            }}>
+            {children}
+        </div>
     )
 }
 
