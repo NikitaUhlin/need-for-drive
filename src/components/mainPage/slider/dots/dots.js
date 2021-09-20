@@ -1,11 +1,20 @@
 import React from "react";
+import classNames from "classnames";
 
-import "./dots.sass"
+import styles from "./dots.sass"
+
+let cx = classNames.bind(styles)
 
 const Dot = ({ active }) => {
+
+    const className = cx({
+        dot: true,
+        dotActive: active
+    })
+
     return (
         <span
-            className={`dot ${active ? "dotActive" : "dotPassive"}`}
+            className={className}
         />
     )
 }

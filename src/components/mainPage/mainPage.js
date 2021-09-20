@@ -10,7 +10,7 @@ import bgSlide4 from '../../assets/img/bg-slide-4.jpg'
 import "./mainPage.sass"
 import Button from "../button/button";
 import Slide from "./slider/slide/slide";
-import useCurrentWidth from "../../utilites/useCurrentWidth";
+import useCurrentWidth from "../../utilities/useCurrentWidth";
 
 function MainPage() {
     const width = useCurrentWidth()

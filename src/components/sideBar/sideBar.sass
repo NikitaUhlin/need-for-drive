@@ -74,9 +74,28 @@
         height: 100%
         opacity: 0.81
 
+@media ( max-width:  1439px)
+    .sideBar
+        width: calc(64px + 60%)
+        left: -60%
+
+@media ( max-width:  1023px)
+    .sideBar
+        width: calc(64px + 100%)
+        left: -100%
+
 @media ( max-width:  767px)
     .sideBar
         background: none
-        padding: 16px
+        padding: 80px 60px
+        &__link
+            font-size: 22px
+            line-height: 27px
+
+        &.isMenuOpen
+            background: $main_black
+
         &__btn-language
             display: none
+            &.isMenuOpen
+                display: block

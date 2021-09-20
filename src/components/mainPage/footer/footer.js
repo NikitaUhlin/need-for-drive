@@ -6,7 +6,7 @@ function Footer() {
     return (
         <div className="footer__content">
             <div className="footer__title">
-                © 2016-2019 «Need for drive»
+                © 2016-2021 «Need for drive»
             </div>
             <a
                 className="footer__link"

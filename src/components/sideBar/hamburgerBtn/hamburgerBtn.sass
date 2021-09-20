@@ -28,10 +28,11 @@ $button-transistion-duration: 0.3s // The transition duration
   box-shadow: none
   border: none
   z-index: 3
-
   cursor: pointer
   transition: background $button-transistion-duration
   &:focus
+    outline: none
+  &:active
     outline: none
   span
     display: block
@@ -86,9 +87,13 @@ $button-transistion-duration: 0.3s // The transition duration
 
 @media ( max-width: 767px )
   .toggleHamburger
-    background: $main_white
+    background: none
     span
       background: $main_black
       &::before,
       &::after
         background: $main_black
+
+    &.toggleHamburger__animx
+      &.isActive
+        background: none
