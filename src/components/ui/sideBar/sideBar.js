@@ -29,7 +29,7 @@ const SideBar = () => {
     })
 
     const classNameMilkShadow = cx({
-        milkShadow: true,
+        [styles.milkShadow]: true,
         [styles.isMenuOpen]: isMenuOpen
     })
 
@@ -61,7 +61,10 @@ const SideBar = () => {
             <div className={classNameBtnLanguage}>
                 Eng
             </div>
-            <div className={classNameMilkShadow}></div>
+            <div
+                onClick={openMenu}
+                className={classNameMilkShadow}
+            ></div>
         </div>
 
     )
