@@ -15,7 +15,7 @@ const MainPage = () => {
     const width = useCurrentWidth()
 
     return (
-        <div>
+        <>
             <SideBar />
             <div className={styles.page}>
                 <div className={styles.container}>
@@ -38,7 +38,7 @@ const MainPage = () => {
                 </div>
                 {width >= 1024 && <MainSlider />}
             </div>
-        </div>
+        </>
 
     )
 }

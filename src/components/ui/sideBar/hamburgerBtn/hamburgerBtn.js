@@ -12,13 +12,11 @@ const HamburgerBtn = ({ openMenu, isMenuOpen }) => {
         [styles.isActive]: isMenuOpen
     })
     return (
-        <div>
-            <button
-                onClick={openMenu}
-                className={className}>
-                <span>menu toggle</span>
-            </button>
-        </div>
+        <button
+            onClick={openMenu}
+            className={className}>
+            <span>menu toggle</span>
+        </button>
     )
 }
 

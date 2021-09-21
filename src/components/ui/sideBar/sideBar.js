@@ -34,7 +34,7 @@ const SideBar = () => {
     })
 
     return (
-        <div>
+        <>
             <HamburgerBtn
                 openMenu={openMenu}
                 isMenuOpen={isMenuOpen}
@@ -64,9 +64,8 @@ const SideBar = () => {
             <div
                 onClick={openMenu}
                 className={classNameMilkShadow}
-            ></div>
-        </div>
-
+            />
+        </>
     )
 }
 
