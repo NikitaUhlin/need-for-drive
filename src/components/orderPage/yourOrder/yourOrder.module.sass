@@ -1,0 +1,54 @@
+.container
+    right: 0
+    position: fixed
+    margin: -32px 65px 0 0
+    padding-top: 32px
+    padding-left: 32px
+    width: 26%
+    height: 100%
+    border-left: 1px solid #EEEEEE
+
+.title
+    font-weight: 500
+    font-size: 18px
+    line-height: 21px
+    text-align: right
+    margin-bottom: 32px
+
+.pickUpPoint
+    max-width: 40em
+    padding: 0
+    overflow-x: hidden
+    list-style: none
+    & li:before
+        float: left
+        width: 0
+        white-space: nowrap
+        content: "....................""....................""....................""...................."
+    & span:first-child
+        padding-right: 0.33em
+        background: white
+        font-weight: 300
+        font-size: 14px
+        line-height: 16px
+        color: #121212
+    & span + span
+        float: right
+        padding-left: 0.33em
+        background: white
+        font-weight: 300
+        font-size: 14px
+        line-height: 16px
+        text-align: right
+        color: #999999
+        width: 120px
+
+.price
+    font-weight: 400
+    font-size: 16px
+    line-height: 16px
+    margin-top: 32px
+    margin-bottom: 32px
+
+    & span
+        font-weight: 500

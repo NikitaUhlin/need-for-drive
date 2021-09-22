@@ -9,6 +9,7 @@ import MainSlider from "./mainSlider/mainSlider";
 import useCurrentWidth from "../../utils/hooks/useCurrentWidth";
 
 import styles from "./mainPage.module.sass"
+import { Link } from "react-router-dom";
 
 
 const MainPage = () => {
@@ -32,7 +33,9 @@ const MainPage = () => {
                         <div className={styles.description}>
                             Поминутная аренда авто твоего города
                         </div>
-                        <Button>Забронировать</Button>
+                        <Link to="/orderPage">
+                            <Button>Забронировать</Button>
+                        </Link>
                     </div>
                     <Footer />
                 </div>

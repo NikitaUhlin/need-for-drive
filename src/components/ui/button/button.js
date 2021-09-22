@@ -12,7 +12,8 @@ const Button = ({ mode, children }) => {
         [styles.darkGreenButton]: mode === "darkGreen",
         [styles.blueButton]: mode === "blue",
         [styles.redButton]: mode === "red",
-        [styles.purpleButton]: mode === "purple"
+        [styles.purpleButton]: mode === "purple",
+        [styles.disableButton]: mode === "disable"
     })
 
     return (
