@@ -5,7 +5,7 @@ import styles from "./button.module.sass"
 
 let cx = classNames.bind(styles)
 
-const Button = ({ mode, children }) => {
+const Button = ({ mode, children, onClick, disabled }) => {
 
     const className = cx({
         [styles.appButton]: true,
@@ -13,11 +13,15 @@ const Button = ({ mode, children }) => {
         [styles.blueButton]: mode === "blue",
         [styles.redButton]: mode === "red",
         [styles.purpleButton]: mode === "purple",
-        [styles.disableButton]: mode === "disable"
+        [styles.disableButton]: disabled
     })
 
     return (
-        <button className={className}>
+        <button
+            disabled={disabled}
+            className={className}
+            onClick={onClick}
+        >
             {children}
         </button>
     )

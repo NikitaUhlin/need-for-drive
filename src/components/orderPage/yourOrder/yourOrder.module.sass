@@ -1,12 +1,11 @@
+@import ../../../variables
+
 .container
-    right: 0
-    position: fixed
-    margin: -32px 65px 0 0
     padding-top: 32px
     padding-left: 32px
-    width: 26%
+    width: 30%
     height: 100%
-    border-left: 1px solid #EEEEEE
+    border-left: 1px solid $main_gray_light
 
 .title
     font-weight: 500
@@ -15,11 +14,18 @@
     text-align: right
     margin-bottom: 32px
 
+.city
+    color: $main_gray
+    text-align: end
+
 .pickUpPoint
     max-width: 40em
     padding: 0
     overflow-x: hidden
     list-style: none
+    font-size: 14px
+    line-height: 16px
+    font-weight: 300
     & li:before
         float: left
         width: 0
@@ -28,19 +34,13 @@
     & span:first-child
         padding-right: 0.33em
         background: white
-        font-weight: 300
-        font-size: 14px
-        line-height: 16px
-        color: #121212
+        color: $main_black
     & span + span
         float: right
         padding-left: 0.33em
         background: white
-        font-weight: 300
-        font-size: 14px
-        line-height: 16px
         text-align: right
-        color: #999999
+        color: $main_gray
         width: 120px
 
 .price
@@ -52,3 +52,7 @@
 
     & span
         font-weight: 500
+
+@media ( max-width: 1023px)
+    .container
+        width: 40%

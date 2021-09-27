@@ -1,3 +1,13 @@
+@import ../../../variables
+
+.container
+    display: flex
+    justify-content: space-between
+
+.content
+    width: 70%
+    padding-top: 32px
+
 .input
     display: inline
     position: relative
@@ -7,7 +17,7 @@
 
     & input
         border: none
-        border-bottom: 1px solid #999999
+        border-bottom: 1px solid $main_gray
         margin: 8px
         width: 224px
         font-size: 14px
@@ -33,5 +43,10 @@
     line-height: 16px
 
 .map
-    width: 736px
+    max-width: 736px
     height: 352px
+    padding-right: 32px
+
+@media ( max-width: 1023px)
+    .content
+        width: 60%

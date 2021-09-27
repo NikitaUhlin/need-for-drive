@@ -3,9 +3,9 @@ import classNames from "classnames";
 
 import HamburgerBtn from "./hamburgerBtn/hamburgerBtn";
 
-import { ReactComponent as FacebookIcon } from "../../../assets/icons/facebookIcon.svg"
-import { ReactComponent as InstagramIcon } from "../../../assets/icons/instagramIcon.svg"
-import { ReactComponent as TelegramIcon } from "../../../assets/icons/telegramIcon.svg"
+import { ReactComponent as FacebookIcon } from "../../assets/icons/facebookIcon.svg"
+import { ReactComponent as InstagramIcon } from "../../assets/icons/instagramIcon.svg"
+import { ReactComponent as TelegramIcon } from "../../assets/icons/telegramIcon.svg"
 
 import styles from "./sideBar.module.sass"
 

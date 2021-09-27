@@ -1,9 +1,9 @@
 import React from "react";
 
-import Header from "../ui/header/header";
-import SideBar from "../ui/sideBar/sideBar";
+import Header from "../../common/header/header";
+import SideBar from "../../common/sideBar/sideBar";
 import Footer from "./footer/footer";
-import Button from "../ui/button/button";
+import Button from "../../common/button/button";
 import MainSlider from "./mainSlider/mainSlider";
 
 import useCurrentWidth from "../../utils/hooks/useCurrentWidth";
@@ -33,7 +33,7 @@ const MainPage = () => {
                         <div className={styles.description}>
                             Поминутная аренда авто твоего города
                         </div>
-                        <Link to="/orderPage">
+                        <Link to="/orderPage/geolocation">
                             <Button>Забронировать</Button>
                         </Link>
                     </div>

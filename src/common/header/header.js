@@ -1,7 +1,7 @@
 import React from "react";
 import { HashRouter as Router, Link } from "react-router-dom";
 
-import svgMapPoint from "../../../assets/icons/mapPoint.svg";
+import svgMapPoint from "../../assets/icons/mapPoint.svg";
 
 import styles from "./header.module.sass"
 
