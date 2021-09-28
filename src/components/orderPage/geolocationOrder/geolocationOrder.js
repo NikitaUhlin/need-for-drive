@@ -1,12 +1,14 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import { Map, YMaps } from 'react-yandex-maps';
 import YourOrder from "../yourOrder/yourOrder";
+import { updateOrder } from "../../../store/actions";
 
 import styles from "./geolocationOrder.module.sass"
 
-const GeolocationOrder = ({ onSubmit }) => {
-    const [valueInputCity, setValueInputCity] = useState('')
-    const [valueInputPickUp, setValueInputPickUp] = useState('')
+const GeolocationOrder = ({ onSubmit, city, pickUp, updateOrder }) => {
+    const [valueInputCity, setValueInputCity] = useState(city)
+    const [valueInputPickUp, setValueInputPickUp] = useState(pickUp)
     const clearInputCity = () => {
         setValueInputCity('')
     }
@@ -21,10 +23,12 @@ const GeolocationOrder = ({ onSubmit }) => {
     }
 
     const handleSubmit = () => {
-        onSubmit({
+        const payload = {
             city: valueInputCity,
             pickUp: valueInputPickUp
-        })
+        }
+        onSubmit(payload)
+        updateOrder(payload)
     }
 
     return (
@@ -74,9 +78,24 @@ const GeolocationOrder = ({ onSubmit }) => {
                     </div>
                 </YMaps>
             </div>
-            <YourOrder onSubmit={handleSubmit} active={valueInputCity.length && valueInputPickUp.length} />
+            <YourOrder
+                onSubmit={handleSubmit}
+                active={valueInputCity.length && valueInputPickUp.length}
+                city={city}
+                pickUp={pickUp}
+            />
         </div>
     )
 }
+const mapStateToProps = (state) => {
+    return {
+        city: state.order.city,
+        pickUp: state.order.pickUp
 
-export default GeolocationOrder
+    };
+};
+const mapDispatchToProps = {
+    updateOrder
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(GeolocationOrder)

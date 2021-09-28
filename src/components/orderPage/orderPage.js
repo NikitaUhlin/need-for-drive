@@ -30,14 +30,17 @@ const OrderPage = () => {
             ...data
         })
         setActiveTab(activeTab + 1)
-        setAccessibleTab(accessibleTab + 1)
+        if (accessibleTab === activeTab) {
+            setAccessibleTab(accessibleTab + 1)
+        }
         history.push(`/orderPage/${tabs[activeTab]}`)
     }
 
     const onTabChange = (id) => {
         if (id <= accessibleTab) {
             setActiveTab(id);
-            history.push(`/orderPage/${tabs[id - 1]}`)
+            if (id !== activeTab)
+                history.push(`/orderPage/${tabs[id - 1]}`)
         }
     }
 
