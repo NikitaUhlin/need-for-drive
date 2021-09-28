@@ -4,9 +4,10 @@ import { useHistory } from "react-router-dom";
 import Header from "../../common/header/header";
 import SideBar from "../../common/sideBar/sideBar";
 import GeolocationOrder from "./geolocationOrder/geolocationOrder";
+import TabsMenu from "./tabsMenu/tabsMenu";
 
 import styles from "./orderPage.module.sass"
-import TabsMenu from "./tabsMenu/tabsMenu";
+
 
 const OrderPage = () => {
 
