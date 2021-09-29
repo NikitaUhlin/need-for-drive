@@ -4,8 +4,8 @@ import {
     Switch,
     Route
 } from "react-router-dom";
-import MainPage from "../mainPage/mainPage";
-import OrderPage from "../orderPage/orderPage";
+import MainPage from "../MainPage/MainPage";
+import OrderPage from "../OrderPage/OrderPage";
 
 const App = () => (
     <Router>
@@ -16,7 +16,7 @@ const App = () => (
             >
                 <MainPage />
             </Route>
-            <Route path="/orderPage">
+            <Route path="/OrderPage">
                 <OrderPage />
             </Route>
         </Switch>

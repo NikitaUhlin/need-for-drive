@@ -2,7 +2,10 @@ const initialState = {
     order: {
         city: '',
         pickUp: ''
-    }
+    },
+    activeTab: 1,
+    accessibleTab: 1,
+
 }
 
 const reducer = (state = initialState, action) => {
@@ -14,6 +17,18 @@ const reducer = (state = initialState, action) => {
                     ...state.order,
                     ...action.payload,
                 }
+            };
+
+        case "UPDATE_ACTIVE_TAB":
+            return {
+                ...state,
+                activeTab: action.payload
+            };
+
+        case "UPDATE_ACCESSIBLE_TAB":
+            return {
+                ...state,
+                accessibleTab: action.payload
             };
         default:
             return state;

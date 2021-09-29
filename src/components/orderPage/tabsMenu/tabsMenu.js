@@ -5,6 +5,7 @@ import styles from "./tabsMenu.module.sass"
 
 let cx = classNames.bind(styles)
 
+
 const TabsMenu = ({ activeTab, onTabChange, accessibleTab }) => {
 
     const classNameGeolocation = cx({
@@ -35,34 +36,32 @@ const TabsMenu = ({ activeTab, onTabChange, accessibleTab }) => {
 
     })
 
-    const onTabsClick = (id) => onTabChange(id)
-
     return (
         <div className={styles.container}>
             <div
                 className={classNameGeolocation}
-                onClick={() => onTabsClick(1)}
+                onClick={() => onTabChange(1)}
             >
                 Местоположение
             </div>
             <div className={styles.triangle} />
             <div
                 className={classNameModel}
-                onClick={() => onTabsClick(2)}
+                onClick={() => onTabChange(2)}
             >
                 Модель
             </div>
             <div className={styles.triangle} />
             <div
                 className={classNameAdditional}
-                onClick={() => onTabsClick(3)}
+                onClick={() => onTabChange(3)}
             >
                 Дополнительно
             </div>
             <div className={styles.triangle} />
             <div
                 className={classNameTotal}
-                onClick={() => onTabsClick(4)}
+                onClick={() => onTabChange(4)}
             >
                 Итого
             </div>

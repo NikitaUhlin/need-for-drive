@@ -1,8 +1,8 @@
 import React from "react";
 
-import Slider from "../slider/slider";
-import Slide from "../slider/slide/slide"
-import Button from "../../../common/button/button";
+import Slider from "../Slider/Slider";
+import Slide from "../Slider/Slide/Slide"
+import Button from "../../../common/Button/Button";
 
 import bgSlide1 from '../../../assets/img/bg-slide-1.jpg'
 import bgSlide2 from '../../../assets/img/bg-slide-2.jpg'

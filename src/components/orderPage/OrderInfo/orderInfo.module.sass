@@ -5,6 +5,11 @@
     padding-left: 32px
     width: 30%
     border-left: 1px solid $main_gray_light
+    position: fixed
+    right: 0
+    top: 135px
+    padding-right: 64px
+    height: 100%
 
 .title
     font-weight: 500
@@ -58,11 +63,13 @@
 @media ( max-width: 1023px)
     .container
         width: 40%
+        padding-right: 32px
 
 @media ( max-width: 767px)
     .container
         width: 100%
         padding: 0
+        position: static
 
     .title
         margin-left: 16px

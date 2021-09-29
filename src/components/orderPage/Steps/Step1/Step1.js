@@ -1,40 +1,43 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { Map, YMaps } from 'react-yandex-maps';
 
-import YourOrder from "../yourOrder/yourOrder";
-import { updateOrder } from "../../../store/actions";
+import styles from "./step1.module.sass"
 
-import styles from "./geolocationOrder.module.sass"
 
-const GeolocationOrder = ({ onSubmit, city, pickUp, updateOrder }) => {
+const Step1 = ({ onSubmit, onChange }) => {
 
-    const [valueInputCity, setValueInputCity] = useState(city)
-    const [valueInputPickUp, setValueInputPickUp] = useState(pickUp)
+    const city = useSelector(state => state.order.city)
+
+    const pickUp = useSelector(state => state.order.pickUp)
 
     const clearInputCity = () => {
-        setValueInputCity('')
+        onChange({
+            city: ''
+        })
     }
 
     const clearInputPickUp = () => {
-        setValueInputPickUp('')
+        onChange({
+            pickUp: ''
+        })
     }
 
     const handleChangeCity = (e) => {
-        setValueInputCity(e.target.value)
+        onChange({
+            city: e.target.value
+        })
+
+        if (city && pickUp) onSubmit()
+
     }
 
     const handleChangePickUp = (e) => {
-        setValueInputPickUp(e.target.value)
-    }
+        onChange({
+            pickUp: e.target.value
+        })
 
-    const handleSubmit = () => {
-        const payload = {
-            city: valueInputCity,
-            pickUp: valueInputPickUp
-        }
-        onSubmit(payload)
-        updateOrder(payload)
+        if (city && pickUp) onSubmit()
     }
 
     return (
@@ -47,7 +50,7 @@ const GeolocationOrder = ({ onSubmit, city, pickUp, updateOrder }) => {
                             list="citySearch"
                             type="text"
                             placeholder="Начните вводить город..."
-                            value={valueInputCity}
+                            value={city}
                             onChange={handleChangeCity}
                         />
                         <datalist id="citySearch">
@@ -64,7 +67,7 @@ const GeolocationOrder = ({ onSubmit, city, pickUp, updateOrder }) => {
 
                             type="text"
                             placeholder="Начните вводить пункт..."
-                            value={valueInputPickUp}
+                            value={pickUp}
                             onChange={handleChangePickUp}
                         />
 
@@ -84,24 +87,8 @@ const GeolocationOrder = ({ onSubmit, city, pickUp, updateOrder }) => {
                     </div>
                 </YMaps>
             </div>
-            <YourOrder
-                onSubmit={handleSubmit}
-                active={valueInputCity.length && valueInputPickUp.length}
-                city={city}
-                pickUp={pickUp}
-            />
         </div>
     )
 }
 
-const mapStateToProps = (state) => ({
-    city: state.order.city,
-    pickUp: state.order.pickUp
-
-})
-
-const mapDispatchToProps = {
-    updateOrder
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(GeolocationOrder)
+export default Step1

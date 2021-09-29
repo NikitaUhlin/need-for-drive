@@ -1,10 +1,10 @@
 import React from "react";
 
-import Header from "../../common/header/header";
-import SideBar from "../../common/sideBar/sideBar";
-import Footer from "./footer/footer";
-import Button from "../../common/button/button";
-import MainSlider from "./mainSlider/mainSlider";
+import Header from "../../common/Header/Header";
+import SideBar from "../../common/SideBar/SideBar";
+import Footer from "./Footer/Footer";
+import Button from "../../common/Button/Button";
+import MainSlider from "./MainSlider/MainSlider";
 
 import useCurrentWidth from "../../utils/hooks/useCurrentWidth";
 
