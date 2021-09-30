@@ -1,0 +1,29 @@
+@import ../../../variables
+
+.content
+    display: flex
+    justify-content: space-between
+
+.title
+    color: $main_gray
+    font-size: 13px
+
+.link
+    text-decoration: none
+    color: $main_black
+    font-size: 13px
+    transition: 0.3s
+
+    &:hover
+        color: $main_accent
+
+@media ( max-width: 767px)
+    .content
+        background: $main_black
+        padding: 16px
+        flex-direction: column-reverse
+        align-items: flex-end
+
+    .link
+        color: $main_accent
+        padding-bottom: 8px
