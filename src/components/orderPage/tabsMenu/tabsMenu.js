@@ -5,35 +5,29 @@ import styles from "./tabsMenu.module.sass"
 
 let cx = classNames.bind(styles)
 
-
 const TabsMenu = ({ activeTab, onTabChange, accessibleTab }) => {
-
     const classNameGeolocation = cx({
         [styles.menuItem]: true,
         [styles.accessible]: accessibleTab >= 1,
         [styles.active]: activeTab === 1,
-
     })
 
     const classNameModel = cx({
         [styles.menuItem]: true,
         [styles.accessible]: accessibleTab >= 2,
         [styles.active]: activeTab === 2,
-
     })
 
     const classNameAdditional = cx({
         [styles.menuItem]: true,
         [styles.accessible]: accessibleTab >= 3,
         [styles.active]: activeTab === 3,
-
     })
 
     const classNameTotal = cx({
         [styles.menuItem]: true,
         [styles.accessible]: accessibleTab >= 4,
         [styles.active]: activeTab === 4,
-
     })
 
     return (

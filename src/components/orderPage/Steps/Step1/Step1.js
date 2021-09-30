@@ -11,17 +11,9 @@ const Step1 = ({ onSubmit, onChange }) => {
 
     const pickUp = useSelector(state => state.order.pickUp)
 
-    const clearInputCity = () => {
-        onChange({
-            city: ''
-        })
-    }
+    const clearInputCity = () => onChange({ city: '' })
 
-    const clearInputPickUp = () => {
-        onChange({
-            pickUp: ''
-        })
-    }
+    const clearInputPickUp = () => onChange({ pickUp: '' })
 
     const handleChangeCity = (e) => {
         onChange({
@@ -29,7 +21,6 @@ const Step1 = ({ onSubmit, onChange }) => {
         })
 
         if (city && pickUp) onSubmit()
-
     }
 
     const handleChangePickUp = (e) => {
