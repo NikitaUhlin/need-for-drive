@@ -2,14 +2,15 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Map, YMaps } from 'react-yandex-maps';
 
-import styles from "./step1.module.sass"
+import * as selectors from "../../../../store/selectors";
 
+import styles from "./step1.module.sass"
 
 const Step1 = ({ onSubmit, onChange }) => {
 
-    const city = useSelector(state => state.order.city)
+    const city = useSelector(selectors.city)
 
-    const pickUp = useSelector(state => state.order.pickUp)
+    const pickUp = useSelector(selectors.pickUp)
 
     const clearInputCity = () => onChange({ city: '' })
 

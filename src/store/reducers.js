@@ -5,7 +5,6 @@ const initialState = {
     },
     activeTab: 1,
     accessibleTab: 1,
-
 }
 
 const reducer = (state = initialState, action) => {

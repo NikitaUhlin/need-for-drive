@@ -1,13 +1,13 @@
 import React from "react";
+
 import Button from "../../../common/Button/Button";
 
 import styles from "./orderInfo.module.sass"
 
 
+const buttonText = ["Выбрать модель", "Дополнительно", "Итого", "Заказать"]
+
 const OrderInfo = ({ onClick, activeTab, order }) => {
-
-    const buttonText = ["Выбрать модель", "Дополнительно", "Итого", "Заказать"]
-
     let active = false
     switch (activeTab) {
         case 1:

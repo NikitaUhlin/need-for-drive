@@ -9,20 +9,22 @@ import TabsMenu from "./TabsMenu/TabsMenu";
 import OrderInfo from "./OrderInfo/OrderInfo";
 
 import { updateAccessibleTab, updateActiveTab, updateOrder } from "../../store/actions";
+import * as selectors from "../../store/selectors";
+import isEmptyObj from "../../utils/isEmptyObj";
 
 import styles from "./orderPage.module.sass"
 
+const tabs = ['geolocation', 'model', 'additional', 'total']
+
 const OrderPage = () => {
 
-    const order = useSelector(state => state.order)
+    const order = useSelector(selectors.order)
 
-    const activeTab = useSelector(state => state.activeTab)
+    const activeTab = useSelector(selectors.activeTab)
 
-    const accessibleTab = useSelector(state => state.accessibleTab)
+    const accessibleTab = useSelector(selectors.accessibleTab)
 
     const dispatch = useDispatch();
-
-    const tabs = ['geolocation', 'model', 'additional', 'total']
 
     const history = useHistory()
 
@@ -33,7 +35,6 @@ const OrderPage = () => {
     const onSubmit = () => {
         if (accessibleTab === activeTab)
             dispatch(updateAccessibleTab(accessibleTab + 1))
-
     }
 
     const onTabChange = (id) => {
@@ -51,18 +52,9 @@ const OrderPage = () => {
         history.push(`/orderPage/${tabs[activeTab]}`)
     }
 
-    function isEmpty(obj) {
-        for (let i in obj) {
-            if (!!obj[i]) {
-                return false
-            }
-        }
-        return true;
-    }
-
     return (
         <>
-            <SideBar />
+            <SideBar page="order" />
             <div className={styles.container}>
                 <Header />
                 <TabsMenu
@@ -72,7 +64,7 @@ const OrderPage = () => {
                 />
                 {activeTab === 1 && <Step1 onSubmit={onSubmit} onChange={onChange} />}
 
-                {!isEmpty(order) &&
+                {!isEmptyObj(order) &&
                     <OrderInfo
                         onClick={onClick}
                         activeTab={activeTab}

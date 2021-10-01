@@ -11,7 +11,7 @@ import styles from "./sideBar.module.sass"
 
 let cx = classNames.bind(styles)
 
-const SideBar = () => {
+const SideBar = ({ page }) => {
 
     const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -20,7 +20,10 @@ const SideBar = () => {
 
     const classNameSideBar = cx({
         [styles.content]: true,
+        [styles.mainPage]: page === "main",
+        [styles.orderPage]: page === "order",
         [styles.isMenuOpen]: isMenuOpen
+
     })
 
     const classNameBtnLanguage = cx({

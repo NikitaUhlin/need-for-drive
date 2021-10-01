@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import Header from "../../common/Header/Header";
 import SideBar from "../../common/SideBar/SideBar";
@@ -9,15 +10,13 @@ import MainSlider from "./MainSlider/MainSlider";
 import useCurrentWidth from "../../utils/hooks/useCurrentWidth";
 
 import styles from "./mainPage.module.sass"
-import { Link } from "react-router-dom";
-
 
 const MainPage = () => {
     const width = useCurrentWidth()
 
     return (
         <>
-            <SideBar />
+            <SideBar page="main" />
             <div className={styles.page}>
                 <div className={styles.container}>
                     <Header />
