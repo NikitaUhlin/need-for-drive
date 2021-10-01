@@ -1,0 +1,50 @@
+@import ../../../variables
+
+.triangle
+    width: 0
+    height: 0
+    border-top: 5px solid transparent
+    border-left: 8px solid $main_gray
+    border-bottom: 5px solid transparent
+    margin: 0 16px
+
+.container
+    border-top: 1px solid $main_gray_light
+    border-bottom: 1px solid $main_gray_light
+    display: flex
+    align-items: center
+    margin: 32px -64px 0 -64px
+    padding: 8px 64px
+
+.menuItem
+    font-weight: 700
+    font-size: 14px
+    line-height: 16px
+    color: $main_gray
+    cursor: default
+
+a:visited:not(.active)
+    color: inherit
+
+.accessible
+    color: $main_black
+    cursor: pointer
+
+.active
+    color: $main_accent
+    cursor: pointer
+
+@media ( max-width: 1439px)
+    .container
+        margin: 32px -32px 0 -64px
+
+@media ( max-width:  767px)
+    .container
+        flex-direction: column
+        margin: 16px 0 0 0
+
+    .triangle
+        border-top: 8px solid $main_gray
+        border-left: 5px solid transparent
+        border-right: 5px solid transparent
+        margin-top: 6px

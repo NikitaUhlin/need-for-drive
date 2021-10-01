@@ -1,4 +1,4 @@
-@import ../../../variables
+@import ../../variables
 
 .appButton
     background: linear-gradient(90deg, $main_accent 2.61%, #039F67 112.6%)
@@ -8,7 +8,7 @@
     color: $main_white
     font-size: 18px
     font-weight: 500
-    padding: 15px 46px
+    padding: 15px 32px
     cursor: pointer
 
     &:hover
@@ -44,6 +44,12 @@
 
     &:hover
         background: linear-gradient(90deg, #1f0f3a 0%, #630b6b 100%)
+
+.disableButton
+    background: $main_gray_light
+    cursor: default
+    &:hover
+        background: $main_gray_light
 
 @media ( max-width: 767px )
     .appButton
