@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 
-import HamburgerBtn from "./hamburgerBtn/hamburgerBtn";
+import HamburgerBtn from "./HamburgerBtn/HamburgerBtn";
 
-import { ReactComponent as FacebookIcon } from "../../../assets/icons/facebookIcon.svg"
-import { ReactComponent as InstagramIcon } from "../../../assets/icons/instagramIcon.svg"
-import { ReactComponent as TelegramIcon } from "../../../assets/icons/telegramIcon.svg"
+import { ReactComponent as FacebookIcon } from "../../assets/icons/facebookIcon.svg"
+import { ReactComponent as InstagramIcon } from "../../assets/icons/instagramIcon.svg"
+import { ReactComponent as TelegramIcon } from "../../assets/icons/telegramIcon.svg"
 
 import styles from "./sideBar.module.sass"
 
 let cx = classNames.bind(styles)
 
-const SideBar = () => {
+const SideBar = ({ page }) => {
 
     const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -20,7 +20,10 @@ const SideBar = () => {
 
     const classNameSideBar = cx({
         [styles.content]: true,
+        [styles.mainPage]: page === "main",
+        [styles.orderPage]: page === "order",
         [styles.isMenuOpen]: isMenuOpen
+
     })
 
     const classNameBtnLanguage = cx({

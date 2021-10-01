@@ -1,17 +1,24 @@
-@import ../../../variables
+@import ../../variables
 
 .content
     position: fixed
-    width: calc(64px + 50%)
     height: 100vh
+
     background: $main_black
     padding: 300px 150px
     z-index: 2
-    left: -50%
     transition: all 0.3s ease-in-out
 
     &.isMenuOpen
         left: -32px
+
+.mainPage
+    width: calc(64px + 50%)
+    left: -50%
+
+.orderPage
+    width: calc(64px + 100%)
+    left: -100%
 
 .btnLanguage
     color: $main_accent
@@ -80,9 +87,13 @@
         opacity: 0.81
 
 @media ( max-width:  1439px)
-    .content
+    .mainPage
         width: calc(64px + 60%)
         left: -60%
+
+    .orderPage
+        width: calc(64px + 100%)
+        left: -100%
 
 @media ( max-width:  1023px)
     .content
