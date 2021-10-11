@@ -10,7 +10,7 @@ import OrderInfo from "./OrderInfo/OrderInfo";
 
 import { updateAccessibleTab, updateActiveTab, updateOrder } from "../../store/actions";
 import * as selectors from "../../store/selectors";
-import isEmptyObj from "../../utils/isEmptyObj";
+import isEmptyObj from "../../utils/functions/isEmptyObj";
 
 import styles from "./orderPage.module.sass"
 
@@ -29,8 +29,9 @@ const OrderPage = () => {
     const history = useHistory()
 
     useEffect(() => {
-        history.push('/orderPage/geolocation')
-    }, [])
+        if (history.location.pathname.split('/').reverse()[0] !== 'geolocation')
+            history.push('/orderPage/geolocation')
+    }, [history])
 
     const onSubmit = () => {
         if (accessibleTab === activeTab)

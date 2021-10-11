@@ -1,6 +1,7 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Map, YMaps } from 'react-yandex-maps';
+import { getCities } from "../../../../store/actions";
 
 import * as selectors from "../../../../store/selectors";
 
@@ -8,9 +9,18 @@ import styles from "./step1.module.sass"
 
 const Step1 = ({ onSubmit, onChange }) => {
 
+    const dispatch = useDispatch()
+
     const city = useSelector(selectors.city)
 
     const pickUp = useSelector(selectors.pickUp)
+
+    const cities = useSelector(selectors.cities)
+
+    useEffect(() => {
+        if (!cities.length)
+            dispatch(getCities())
+    }, [dispatch])
 
     const clearInputCity = () => onChange({ city: '' })
 
@@ -46,10 +56,11 @@ const Step1 = ({ onSubmit, onChange }) => {
                             onChange={handleChangeCity}
                         />
                         <datalist id="citySearch">
-                            <option value="Краснодар"></option>
-                            <option value="Ульяновск"></option>
-                            <option value="Москва"></option>
-                            <option value="Санкт-петербург"></option>
+
+                            {cities.map((data) => {
+                                return (<option key={data.id} value={data.name}></option>)
+                            })}
+
                         </datalist>
                         <span className={styles.close} onClick={clearInputCity}>&times;</span>
                     </div>

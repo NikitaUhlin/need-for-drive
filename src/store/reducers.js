@@ -5,6 +5,9 @@ const initialState = {
     },
     activeTab: 1,
     accessibleTab: 1,
+    cities: [],
+    loading: false,
+    error: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -29,6 +32,26 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 accessibleTab: action.payload
             };
+
+        case "GET_CITIES_STARTED":
+            return {
+                ...state,
+                loading: true
+            };
+        case "GET_CITIES_SUCCESS":
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                cities: action.payload.data
+            };
+        case "GET_CITIES_FAILURE":
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            };
+
         default:
             return state;
     }
