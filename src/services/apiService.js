@@ -15,6 +15,10 @@ class ApiService {
     getCities() {
         return this.get("city");
     }
+
+    getPickUp() {
+        return this.get("point");
+    }
 }
 
 const API = new ApiService();

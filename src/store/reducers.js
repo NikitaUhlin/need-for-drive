@@ -6,8 +6,10 @@ const initialState = {
     activeTab: 1,
     accessibleTab: 1,
     cities: [],
+    pickUps: [],
     loading: false,
-    error: null
+    error: null,
+    points: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -51,6 +53,44 @@ const reducer = (state = initialState, action) => {
                 loading: false,
                 error: action.payload
             };
+
+        case "GET_PICK_UP_STARTED":
+            return {
+                ...state,
+                loading: true
+            };
+        case "GET_PICK_UP_SUCCESS":
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                pickUps: action.payload.data
+            };
+        case "GET_PICK_UP_FAILURE":
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            };
+        case "GET_POINT_STARTED":
+            return {
+                ...state,
+                loading: true
+            };
+        case "GET_POINT_SUCCESS":
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                points: action.payload
+            };
+        case "GET_POINT_FAILURE":
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            };
+
 
         default:
             return state;

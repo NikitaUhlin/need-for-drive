@@ -15,8 +15,19 @@ const SideBar = ({ page }) => {
 
     const [isMenuOpen, setIsMenuOpen] = useState(false)
 
+    const [language, setLanguage] = useState('Eng')
+
     const openMenu = () =>
         setIsMenuOpen(!isMenuOpen)
+
+    const onClickLanguage = () => {
+        if (language === 'Eng')
+            setLanguage('Рус')
+
+        else
+            setLanguage('Eng')
+    }
+
 
     const classNameSideBar = cx({
         [styles.content]: true,
@@ -61,8 +72,11 @@ const SideBar = ({ page }) => {
                     />
                 </div>
             </div>
-            <div className={classNameBtnLanguage}>
-                Eng
+            <div
+                className={classNameBtnLanguage}
+                onClick={onClickLanguage}
+            >
+                {language}
             </div>
             <div
                 onClick={openMenu}

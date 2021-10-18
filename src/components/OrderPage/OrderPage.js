@@ -10,18 +10,14 @@ import OrderInfo from "./OrderInfo/OrderInfo";
 
 import { updateAccessibleTab, updateActiveTab, updateOrder } from "../../store/actions";
 import * as selectors from "../../store/selectors";
-import isEmptyObj from "../../utils/functions/isEmptyObj";
 
 import styles from "./orderPage.module.sass"
 
 const tabs = ['geolocation', 'model', 'additional', 'total']
 
 const OrderPage = () => {
-
     const order = useSelector(selectors.order)
-
     const activeTab = useSelector(selectors.activeTab)
-
     const accessibleTab = useSelector(selectors.accessibleTab)
 
     const dispatch = useDispatch();
@@ -31,7 +27,7 @@ const OrderPage = () => {
     useEffect(() => {
         if (history.location.pathname.split('/').reverse()[0] !== 'geolocation')
             history.push('/orderPage/geolocation')
-    }, [history])
+    }, [])
 
     const onSubmit = () => {
         if (accessibleTab === activeTab)
@@ -65,7 +61,7 @@ const OrderPage = () => {
                 />
                 {activeTab === 1 && <Step1 onSubmit={onSubmit} onChange={onChange} />}
 
-                {!isEmptyObj(order) &&
+                {(order.city && order.pickUp) &&
                     <OrderInfo
                         onClick={onClick}
                         activeTab={activeTab}
