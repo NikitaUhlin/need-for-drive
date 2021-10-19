@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
 
-import * as selectors from "../../../store/selectors";
+import * as selectors from "../../../store/selectors"
 import Button from "../../../common/Button/Button";
 
 import styles from "./orderInfo.module.sass"

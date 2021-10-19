@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 
-import HamburgerBtn from "./HamburgerBtn/HamburgerBtn";
+import HamburgerBtn from "./HamburgerBtn/HamburgerBtn"
 
 import { ReactComponent as FacebookIcon } from "../../assets/icons/facebookIcon.svg"
 import { ReactComponent as InstagramIcon } from "../../assets/icons/instagramIcon.svg"

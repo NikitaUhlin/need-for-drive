@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux"
 
 import Header from "../../common/Header/Header";
-import SideBar from "../../common/SideBar/SideBar";
+import SideBar from "../../common/SideBar/SideBar"
 import Step1 from "./Steps/Step1/Step1";
 import TabsMenu from "./TabsMenu/TabsMenu";
 import OrderInfo from "./OrderInfo/OrderInfo";

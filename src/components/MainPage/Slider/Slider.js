@@ -1,6 +1,6 @@
 import React, { useState, Children, useRef, useEffect } from "react";
 import SliderContent from "./SliderContent/SliderContent";
-import Arrow from "./Arrow/Arrow";
+import Arrow from "./Arrow/Arrow"
 import Dots from "./Dots/Dots";
 
 import useCurrentWidth from "../../../utils/hooks/useCurrentWidth";
