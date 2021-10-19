@@ -4,7 +4,7 @@ import { Map, Placemark, YMaps } from 'react-yandex-maps';
 import Select from "react-select";
 
 import { getCities, getPickUp, getPoint } from "../../../../store/actions";
-import * as selectors from "../../../../store/selectors";
+import * as selectors from "../../../../store/selectors"
 
 import styles from "./step1.module.sass"
 
