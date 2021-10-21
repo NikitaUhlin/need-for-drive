@@ -30,9 +30,9 @@ const getCities = () => {
     };
 };
 
-const getCitiesSuccess = newCities => ({
+const getCitiesSuccess = newItem => ({
     type: "GET_CITIES_SUCCESS",
-    payload: newCities
+    payload: newItem
 });
 
 const getCitiesStarted = () => ({
@@ -58,9 +58,9 @@ const getPickUp = () => {
     };
 };
 
-const getPikUpSuccess = newCities => ({
+const getPikUpSuccess = newItem => ({
     type: "GET_PICK_UP_SUCCESS",
-    payload: newCities
+    payload: newItem
 });
 
 const getPikUpStarted = () => ({
@@ -86,9 +86,37 @@ const getPoint = (payload) => {
     };
 };
 
-const getPointSuccess = newCities => ({
+const getGeolocationCity = (payload) => {
+    return dispatch => {
+        dispatch(getGeolocationCityStarted());
+
+        geo.getGeoCity(payload)
+            .then(res => {
+                dispatch(getGeolocationCitySuccess(res));
+            })
+            .catch(err => {
+                dispatch(getGeolocationCityFailure(err.message));
+            });
+    }
+}
+
+const getGeolocationCitySuccess = newItem => ({
+    type: "GET_GEOLOCATION_CITY_SUCCESS",
+    payload: newItem
+});
+
+const getGeolocationCityStarted = () => ({
+    type: "GET_GEOLOCATION_CITY_STARTED"
+});
+
+const getGeolocationCityFailure = error => ({
+    type: "GET_GEOLOCATION_CITY_FAILURE",
+    payload: error
+});
+
+const getPointSuccess = newItem => ({
     type: "GET_POINT_SUCCESS",
-    payload: newCities
+    payload: newItem
 });
 
 const getPointStarted = () => ({
@@ -116,4 +144,5 @@ export {
     getPointStarted,
     getPointFailure,
     getPoint,
+    getGeolocationCity,
 };

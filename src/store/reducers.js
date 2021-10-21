@@ -9,7 +9,8 @@ const initialState = {
     pickUps: [],
     loading: false,
     error: null,
-    points: []
+    points: [],
+    geolocationCity: ''
 }
 
 const reducer = (state = initialState, action) => {
@@ -85,6 +86,24 @@ const reducer = (state = initialState, action) => {
                 points: action.payload
             };
         case "GET_POINT_FAILURE":
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            };
+        case "GET_GEOLOCATION_CITY_STARTED":
+            return {
+                ...state,
+                loading: true
+            };
+        case "GET_GEOLOCATION_CITY_SUCCESS":
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                geolocationCity: action.payload
+            };
+        case "GET_GEOLOCATION_CITY_FAILURE":
             return {
                 ...state,
                 loading: false,

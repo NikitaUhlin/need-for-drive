@@ -36,6 +36,16 @@ class GeoService {
             }
         })
     }
+
+    getGeoCity(geoPos) {
+        return this.geo.get('', {
+            params: {
+                format: 'json',
+                geocode: geoPos,
+                apikey: 'c2eeaac1-3b6e-4464-aa91-033699da3b02'
+            }
+        })
+    }
 }
 
 const geo = new GeoService();

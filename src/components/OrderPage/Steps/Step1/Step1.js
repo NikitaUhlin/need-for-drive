@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Map, Placemark, YMaps } from 'react-yandex-maps';
 import Select from "react-select";
 
-import { getCities, getPickUp, getPoint } from "../../../../store/actions";
+import { getCities, getGeolocationCity, getPickUp, getPoint } from "../../../../store/actions";
 import * as selectors from "../../../../store/selectors"
 
 import styles from "./step1.module.sass"
@@ -16,6 +16,7 @@ const Step1 = ({ onSubmit, onChange }) => {
     const cities = useSelector(selectors.cities)
     const pickUps = useSelector(selectors.pickUps)
     const points = useSelector(selectors.points)
+    const geolocationCity = useSelector(selectors.geolocationCity)
 
     const [mapState, setMapState] = useState({ center: [54.992472, 39.076132], zoom: 11 })
 
@@ -132,11 +133,21 @@ const Step1 = ({ onSubmit, onChange }) => {
     const getGeolocation = (ymaps) => {
         ymaps.geolocation.get()
             .then((result) => {
+                dispatch(getGeolocationCity(`${result.geoObjects.position[1]}, ${result.geoObjects.position[0]}`))
                 setMapState({
                     center: result.geoObjects.position
                 })
             })
     }
+
+    useEffect(() => {
+        const geoCity = cities.find((item) => geolocationCity.data && geolocationCity.data.response.GeoObjectCollection.featureMember[0].GeoObject.metaDataProperty.GeocoderMetaData.Address.formatted.split(', ')[1] === item.name)
+        if (geoCity)
+            onChange({
+                city: geoCity.id
+            })
+    }, [geolocationCity.data, cities])
+
 
     return (
         <div className={styles.container}>
@@ -171,7 +182,6 @@ const Step1 = ({ onSubmit, onChange }) => {
                 </div>
 
                 <div className={styles.mapTitle}>Выбрать на карте:</div>
-
                 <YMaps
                     query={{
                         apikey: 'c2eeaac1-3b6e-4464-aa91-033699da3b02'
