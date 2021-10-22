@@ -68,9 +68,11 @@ const Step1 = ({ onSubmit, onChange }) => {
         if (pointCity)
             setMapState({
                 center: pointCity.split(' ').reverse(),
+                zoom: 11
             })
-    }, [pointCity])
 
+    }, [pointCity])
+    console.log(mapState)
     const citiesOptions = useMemo(() => cities.map((data) => ({
         label: data.name,
         value: data.id
@@ -99,7 +101,8 @@ const Step1 = ({ onSubmit, onChange }) => {
             pickUp: ''
         })
 
-        dispatch(getPointCity(selectedCity.name))
+        if (selectedCity)
+            dispatch(getPointCity(selectedCity.name))
     }
 
     const handleChangePickUp = (e) => {
