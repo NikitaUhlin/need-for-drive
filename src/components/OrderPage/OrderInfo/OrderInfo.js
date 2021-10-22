@@ -12,14 +12,19 @@ const buttonText = ["Выбрать модель", "Дополнительно",
 const OrderInfo = ({ onClick, activeTab, order }) => {
     const cities = useSelector(selectors.cities)
     const pickUps = useSelector(selectors.pickUps)
+    const cars = useSelector(selectors.cars)
 
     const city = useMemo(() => cities.find((item) => item.id === order.city), [cities, order.city])
     const pickUp = useMemo(() => pickUps.find((item) => item.id === order.pickUp), [pickUps, order.pickUp])
+    const car = useMemo(() => cars.find((item) => item.id === order.car), [cars, order.car])
 
     let active = false
     switch (activeTab) {
         case 1:
             active = order.city && order.pickUp
+            break;
+        case 2:
+            active = order.car
             break;
 
         default: active = false
@@ -28,19 +33,28 @@ const OrderInfo = ({ onClick, activeTab, order }) => {
     return (
         <div className={styles.container}>
             <div className={styles.title}>Ваш заказ:</div>
-            <ul className={styles.pickUpPoint}>
-                <div className={styles.city}>{city && city.name},</div>
-                <li>
-                    <span>
+            <div className={styles.list}>
+                <div className={styles.listItem}>
+                    <div className={styles.label}>
                         Пункт выдачи
-                    </span>
-                    <span>
-
-                        <div>{pickUp && pickUp.address}</div>
-                    </span>
-                </li>
-            </ul>
-            <div className={styles.price}><span>Цена:</span> от 8 000 до 12 000 ₽</div>
+                    </div>
+                    <div className={styles.dots}></div>
+                    <div className={styles.value}>
+                        <div className={styles.city}>{city && city.name},</div>
+                        {pickUp && pickUp.address}
+                    </div>
+                </div>
+                {car && <div className={styles.listItem}>
+                    <div className={styles.label}>
+                        Модель
+                    </div>
+                    <div className={styles.dots}></div>
+                    <div className={styles.value}>
+                        {car && car.name}
+                    </div>
+                </div>}
+            </div>
+            {car && <div className={styles.price}><span>Цена:</span> от {car.priceMin} до {car.priceMax} ₽</div>}
             <Button
                 onClick={onClick}
                 disabled={!active}

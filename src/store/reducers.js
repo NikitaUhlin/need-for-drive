@@ -1,7 +1,8 @@
 const initialState = {
     order: {
         city: '',
-        pickUp: ''
+        pickUp: '',
+        car: ''
     },
     activeTab: 1,
     accessibleTab: 1,
@@ -12,6 +13,7 @@ const initialState = {
     points: [],
     geolocationCity: '',
     pointCity: '',
+    cars: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -69,6 +71,25 @@ const reducer = (state = initialState, action) => {
                 pickUps: action.payload.data
             };
         case "GET_PICK_UP_FAILURE":
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            };
+
+        case "GET_CARS_STARTED":
+            return {
+                ...state,
+                loading: true
+            };
+        case "GET_CARS_SUCCESS":
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                cars: action.payload.data
+            };
+        case "GET_CARS_FAILURE":
             return {
                 ...state,
                 loading: false,

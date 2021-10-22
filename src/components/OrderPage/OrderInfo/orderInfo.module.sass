@@ -22,33 +22,23 @@
     color: $main_gray
     text-align: end
 
-.pickUpPoint
-    max-width: 40em
-    padding: 0
-    overflow-x: hidden
-    list-style: none
+.list
     font-size: 14px
     line-height: 16px
     font-weight: 300
 
-    & li:before
-        float: left
-        width: 0
-        white-space: nowrap
-        content: "....................""....................""....................""...................."
+.listItem
+    display: flex
+    align-items: flex-end
+    margin-bottom: 16px
 
-    & span:first-child
-        padding-right: 0.33em
-        background: white
-        color: $main_black
+.dots
+    flex-grow: 1
+    border-bottom: 1px dotted #999999
+    margin: 0 5px
 
-    & span + span
-        float: right
-        padding-left: 0.33em
-        background: white
-        text-align: right
-        color: $main_gray
-        width: 120px
+.value
+    color: #999999
 
 .price
     font-weight: 400
@@ -57,7 +47,7 @@
     margin-top: 32px
     margin-bottom: 32px
 
-    & span
+    span
         font-weight: 500
 
 @media ( max-width: 1023px)

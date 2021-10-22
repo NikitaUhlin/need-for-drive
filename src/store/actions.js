@@ -72,6 +72,34 @@ const getPikUpFailure = error => ({
     payload: error
 });
 
+const getCars = () => {
+    return dispatch => {
+        dispatch(getCarsStarted());
+
+        API.getCars()
+            .then(res => {
+                dispatch(getCarsSuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(getCarsFailure(err.message));
+            });
+    };
+};
+
+const getCarsSuccess = newCities => ({
+    type: "GET_CARS_SUCCESS",
+    payload: newCities
+});
+
+const getCarsStarted = () => ({
+    type: "GET_CARS_STARTED"
+});
+
+const getCarsFailure = error => ({
+    type: "GET_CARS_FAILURE",
+    payload: error
+});
+
 const getPoint = (payload) => {
     return dispatch => {
         dispatch(getPointStarted());
@@ -175,4 +203,5 @@ export {
     getPoint,
     getGeolocationCity,
     getPointCity,
+    getCars,
 };
