@@ -100,9 +100,8 @@ const Step1 = ({ onSubmit, onChange }) => {
         })
 
         dispatch(getPointCity(selectedCity.name))
-
     }
-    console.log(pointCity)
+
     const handleChangePickUp = (e) => {
         const selectedPickUp = pickUps.find((item) => e && e.value === item.id)
         onChange({
@@ -151,7 +150,6 @@ const Step1 = ({ onSubmit, onChange }) => {
                 city: geoCity.id
             })
     }, [geolocationCity, cities])
-
 
     return (
         <div className={styles.container}>
