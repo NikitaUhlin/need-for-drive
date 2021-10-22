@@ -16,7 +16,7 @@ const App = () => (
             >
                 <MainPage />
             </Route>
-            <Route path="/OrderPage">
+            <Route path="/orderPage">
                 <OrderPage />
             </Route>
         </Switch>

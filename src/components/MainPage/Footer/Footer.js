@@ -10,7 +10,9 @@ const Footer = () => (
         <a
             className={styles.link}
             href="tel:+74952342244"
-        >8 (495) 234-22-44</a>
+        >
+            8 (495) 234-22-44
+        </a>
     </div>
 )
 
