@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Map, Placemark, YMaps } from 'react-yandex-maps';
 import Select from "react-select";
 
-import { getCities, getGeolocationCity, getPickUp, getPoint } from "../../../../store/actions";
+import { getCities, getGeolocationCity, getPickUp, getPoint, getPointCity } from "../../../../store/actions";
 import * as selectors from "../../../../store/selectors"
 
 import styles from "./step1.module.sass"
@@ -16,6 +16,7 @@ const Step1 = ({ onSubmit, onChange }) => {
     const cities = useSelector(selectors.cities)
     const pickUps = useSelector(selectors.pickUps)
     const points = useSelector(selectors.points)
+    const pointCity = useSelector(selectors.pointCity)
     const geolocationCity = useSelector(selectors.geolocationCity)
 
     const [mapState, setMapState] = useState({ center: [54.992472, 39.076132], zoom: 11 })
@@ -63,6 +64,13 @@ const Step1 = ({ onSubmit, onChange }) => {
         }
     }, [pickUp, points])
 
+    useEffect(() => {
+        if (pointCity)
+            setMapState({
+                center: pointCity.split(' ').reverse(),
+            })
+    }, [pointCity])
+
     const citiesOptions = useMemo(() => cities.map((data) => ({
         label: data.name,
         value: data.id
@@ -85,26 +93,22 @@ const Step1 = ({ onSubmit, onChange }) => {
     )
 
     const handleChangeCity = (e) => {
+        const selectedCity = cities.find((item) => e && e.value === item.id)
         onChange({
             city: e ? e.value : '',
             pickUp: ''
         })
-    }
 
+        dispatch(getPointCity(selectedCity.name))
+
+    }
+    console.log(pointCity)
     const handleChangePickUp = (e) => {
         const selectedPickUp = pickUps.find((item) => e && e.value === item.id)
         onChange({
             city: selectedPickUp ? selectedPickUp.cityId.id : city,
             pickUp: e ? e.value : ''
         })
-        if (e) {
-            const point = points.find((item) => e.value === item.id)
-            if (point)
-                setMapState({
-                    center: point.coordinates,
-                    zoom: 14
-                })
-        }
     }
 
     const onPlacemarkClick = (id) => {
@@ -141,12 +145,12 @@ const Step1 = ({ onSubmit, onChange }) => {
     }
 
     useEffect(() => {
-        const geoCity = cities.find((item) => geolocationCity.data && geolocationCity.data.response.GeoObjectCollection.featureMember[0].GeoObject.metaDataProperty.GeocoderMetaData.Address.formatted.split(', ')[1] === item.name)
+        const geoCity = cities.find((item) => geolocationCity && geolocationCity === item.name)
         if (geoCity)
             onChange({
                 city: geoCity.id
             })
-    }, [geolocationCity.data, cities])
+    }, [geolocationCity, cities])
 
 
     return (

@@ -86,6 +86,20 @@ const getPoint = (payload) => {
     };
 };
 
+const getPointCity = (payload) => {
+    return dispatch => {
+        dispatch(getPointCityStarted());
+
+        geo.getCoordinate(payload)
+            .then(res => {
+                dispatch(getPointCitySuccess(res));
+            })
+            .catch(err => {
+                dispatch(getPointCityFailure(err.message));
+            });
+    };
+};
+
 const getGeolocationCity = (payload) => {
     return dispatch => {
         dispatch(getGeolocationCityStarted());
@@ -128,6 +142,21 @@ const getPointFailure = error => ({
     payload: error
 });
 
+const getPointCitySuccess = newItem => ({
+    type: "GET_POINT_CITY_SUCCESS",
+    payload: newItem
+});
+
+const getPointCityStarted = () => ({
+    type: "GET_POINT_CITY_STARTED"
+});
+
+const getPointCityFailure = error => ({
+    type: "GET_POINT_CITY_FAILURE",
+    payload: error
+});
+
+
 export {
     updateOrder,
     updateActiveTab,
@@ -145,4 +174,5 @@ export {
     getPointFailure,
     getPoint,
     getGeolocationCity,
+    getPointCity,
 };

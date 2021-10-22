@@ -22,7 +22,7 @@ const Header = () => {
                 <div className={styles.mapPoint}>
                     <img src={svgMapPoint} alt="" />
                     <div className={styles.mapPointCity}>
-                        {selectedCity ? selectedCity.name : "Ульяновск"}
+                        {selectedCity ? selectedCity.name : ""}
                     </div>
                 </div>
             </div>

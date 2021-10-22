@@ -10,7 +10,8 @@ const initialState = {
     loading: false,
     error: null,
     points: [],
-    geolocationCity: ''
+    geolocationCity: '',
+    pointCity: '',
 }
 
 const reducer = (state = initialState, action) => {
@@ -91,6 +92,25 @@ const reducer = (state = initialState, action) => {
                 loading: false,
                 error: action.payload
             };
+        case "GET_POINT_CITY_STARTED":
+            return {
+                ...state,
+                loading: true
+            };
+        case "GET_POINT_CITY_SUCCESS":
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                pointCity: action.payload.data.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos
+            };
+        case "GET_POINT_CITY_FAILURE":
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            };
+
         case "GET_GEOLOCATION_CITY_STARTED":
             return {
                 ...state,
@@ -101,7 +121,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 error: null,
-                geolocationCity: action.payload
+                geolocationCity: action.payload.data.response.GeoObjectCollection.featureMember[0].GeoObject.metaDataProperty.GeocoderMetaData.Address.formatted.split(', ')[1]
             };
         case "GET_GEOLOCATION_CITY_FAILURE":
             return {
