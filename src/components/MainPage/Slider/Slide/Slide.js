@@ -8,5 +8,4 @@ const Slide = ({ children }) => (
     </div>
 )
 
-
 export default Slide

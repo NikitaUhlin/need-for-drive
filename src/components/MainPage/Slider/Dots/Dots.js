@@ -6,7 +6,6 @@ import styles from "./dots.module.sass"
 let cx = classNames.bind(styles)
 
 const Dot = ({ active }) => {
-
     const className = cx({
         [styles.dot]: true,
         [styles.dotActive]: active

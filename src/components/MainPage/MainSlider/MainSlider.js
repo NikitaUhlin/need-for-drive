@@ -2,7 +2,7 @@ import React from "react";
 
 import Slider from "../Slider/Slider";
 import Slide from "../Slider/Slide/Slide"
-import Button from "../../../common/Button/Button";
+import Button from "../../../common/Button/Button"
 
 import bgSlide1 from '../../../assets/img/bg-slide-1.jpg'
 import bgSlide2 from '../../../assets/img/bg-slide-2.jpg'

@@ -1,6 +1,6 @@
 import React, { useState, Children, useRef, useEffect } from "react";
 import SliderContent from "./SliderContent/SliderContent";
-import Arrow from "./Arrow/Arrow";
+import Arrow from "./Arrow/Arrow"
 import Dots from "./Dots/Dots";
 
 import useCurrentWidth from "../../../utils/hooks/useCurrentWidth";
@@ -17,6 +17,7 @@ const Slider = ({ children, autoPlayInterval }) => {
 
     useEffect(() => {
         autoPlayRef.current = nextSlide
+        return () => clearInterval(timerAutoPlay)
     })
 
     const [timerAutoPlay, setTimerAutoPlay] = useState(0)
@@ -28,7 +29,7 @@ const Slider = ({ children, autoPlayInterval }) => {
 
         setTimerAutoPlay(setInterval(play, autoPlayInterval * 1000))
         return () => clearInterval(timerAutoPlay)
-    }, [])
+    }, [autoPlayInterval])
 
     const [state, setState] = useState({
         translate: 0,

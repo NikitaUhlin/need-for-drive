@@ -1,8 +1,8 @@
 import React from "react";
-import classNames from "classnames";
+import classNames from "classnames"
 
-import leftArrow from "../../../../assets/icons/leftArrow.svg";
-import rightArrow from "../../../../assets/icons/rightArrow.svg";
+import leftArrow from "../../../../assets/icons/leftArrow.svg"
+import rightArrow from "../../../../assets/icons/rightArrow.svg"
 
 import styles from "./arrow.module.sass"
 

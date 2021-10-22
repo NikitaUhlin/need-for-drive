@@ -6,7 +6,6 @@ import styles from "./button.module.sass"
 let cx = classNames.bind(styles)
 
 const Button = ({ mode, children, onClick, disabled }) => {
-
     const className = cx({
         [styles.appButton]: true,
         [styles.darkGreenButton]: mode === "darkGreen",
