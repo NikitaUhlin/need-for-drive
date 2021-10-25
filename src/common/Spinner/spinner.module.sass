@@ -1,0 +1,88 @@
+@keyframes content
+    0%
+        transform: rotate(0)
+    100%
+        transform: rotate(360deg)
+
+.content div
+    box-sizing: border-box!important
+.content > div
+    position: absolute
+    width: 68px
+    height: 68px
+    top: 16px
+    left: 16px
+    border-radius: 50%
+    border: 8px solid #000
+    border-color: #0ec261 transparent #0ec261 transparent
+    animation: content 1s linear infinite
+
+    &:nth-child(2), .content > div:nth-child(4)
+        width: 50px
+        height: 50px
+        top: 25px
+        left: 25px
+        animation: content 1s linear infinite reverse
+
+    &:nth-child(2)
+        border-color: transparent #999999 transparent #999999
+
+    &:nth-child(3)
+        border-color: transparent
+
+    &:nth-child(3) div
+        position: absolute
+        width: 100%
+        height: 100%
+        transform: rotate(45deg)
+
+    &:nth-child(3) div:before, .content > div:nth-child(3) div:after
+        content: ""
+        display: block
+        position: absolute
+        width: 8px
+        height: 8px
+        top: -8px
+        left: 22px
+        background: #0ec261
+        border-radius: 50%
+        box-shadow: 0 60px 0 0 #0ec261
+
+    &:nth-child(3) div:after
+        left: -8px
+        top: 22px
+        box-shadow: 60px 0 0 0 #0ec261
+
+    &:nth-child(4)
+        border-color: transparent
+
+    &:nth-child(4) div
+        position: absolute
+        width: 100%
+        height: 100%
+        transform: rotate(45deg)
+
+    &:nth-child(4)
+        div:after
+            left: -8px
+            top: 13px
+            box-shadow: 42px 0 0 0 #999999
+
+.container
+    width: 50px
+    height: 50px
+    display: block
+    margin: 0 auto
+    overflow: hidden
+    background: rgba(0,0,0,0)
+
+.content
+    width: 100%
+    height: 100%
+    position: relative
+    transform: translateZ(0) scale(0.5)
+    backface-visibility: hidden
+    transform-origin: 0 0
+
+    & div
+        box-sizing: content-box

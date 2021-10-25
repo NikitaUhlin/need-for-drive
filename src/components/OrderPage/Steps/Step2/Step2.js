@@ -1,23 +1,34 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import classNames from "classnames";
 
 import CarCard from "./CarCard/CarCard";
 import * as selectors from "../../../../store/selectors";
 import { getCars } from "../../../../store/actions";
 
 import styles from "./step2.module.sass"
+import RadioButton from "../../../../common/RadioButton/RadioButton";
+import Spinner from "../../../../common/Spinner/Spinner";
 
-let cx = classNames.bind(styles)
-
-const catId = {
-    1: '',
-    2: '600598a3ad015e0bb699774c',
-    3: '60b943492aed9a0b9b7ed335'
-}
+const catId = [
+    {
+        id: '',
+        name: 'all',
+        title: 'Все модели'
+    },
+    {
+        id: '600598a3ad015e0bb699774c',
+        name: 'eco',
+        title: 'Эконом'
+    },
+    {
+        id: '60b943492aed9a0b9b7ed335',
+        name: 'premium',
+        title: 'Премиум'
+    },
+]
 
 const Step2 = ({ onSubmit, onChange }) => {
-    const [activeFilter, setActiveFilter] = useState(1)
+    const [activeFilter, setActiveFilter] = useState(catId[0].name)
     const dispatch = useDispatch()
     const car = useSelector(selectors.car)
     const loading = useSelector(selectors.loading)
@@ -25,24 +36,10 @@ const Step2 = ({ onSubmit, onChange }) => {
         setActiveFilter(id)
     }
     const cars = useSelector(selectors.cars)
-    const filteredCars = useMemo(() => cars
-        .filter(data => data.categoryId && data.categoryId.id.includes(catId[activeFilter])), [cars, activeFilter]);
-
-    const classNameFilterAll = cx({
-        [styles.filterItem]: true,
-        [styles.active]: activeFilter === 1,
-
-    })
-    const classNameFilterEco = cx({
-        [styles.filterItem]: true,
-        [styles.active]: activeFilter === 2,
-
-    })
-    const classNameFilterPre = cx({
-        [styles.filterItem]: true,
-        [styles.active]: activeFilter === 3,
-
-    })
+    const filteredCars = useMemo(() => {
+        const selectedFilter = catId.find((item) => item.name === activeFilter)
+        return cars.filter(data => data.categoryId && data.categoryId.id.includes(selectedFilter.id))
+    }, [cars, activeFilter]);
 
     const onClickCar = (id) => {
         onChange({
@@ -61,32 +58,21 @@ const Step2 = ({ onSubmit, onChange }) => {
     return (
         <div className={styles.content}>
             <div className={styles.filter}>
-                <div className={classNameFilterAll}>
-                    <div
-                        onClick={() => onCategorySelect(1)}
-                        className={styles.radio}
-                    />
-                    Все модели
-                </div>
-                <div className={classNameFilterEco}
-                >
-                    <div
-                        onClick={() => onCategorySelect(2)}
-                        className={styles.radio}
-                    />
-                    Эконом
-                </div>
-                <div className={classNameFilterPre}
-                >
-                    <div
-                        onClick={() => onCategorySelect(3)}
-                        className={styles.radio}
-                    />
-                    Премиум
-                </div>
+                {catId.map((item) => {
+                    return <RadioButton
+                        key={item.id}
+                        onClick={onCategorySelect}
+                        name={item.name}
+                        isActive={activeFilter === item.name}
+                    >
+                        {item.title}
+                    </RadioButton>
+                })
+                }
+
             </div>
 
-            {loading ? <div>Загрузка...</div> : <div className={styles.cars}>
+            {loading ? <Spinner /> : <div className={styles.cars}>
                 {filteredCars.map((item) => {
                     return (
                         <CarCard

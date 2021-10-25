@@ -72,7 +72,7 @@ const Step1 = ({ onSubmit, onChange }) => {
             })
 
     }, [pointCity])
-    console.log(mapState)
+
     const citiesOptions = useMemo(() => cities.map((data) => ({
         label: data.name,
         value: data.id
