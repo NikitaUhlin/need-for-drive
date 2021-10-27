@@ -32,9 +32,11 @@ const MainPage = () => {
                         <div className={styles.description}>
                             Поминутная аренда авто твоего города
                         </div>
-                        <Link to="/orderPage/geolocation">
-                            <Button>Забронировать</Button>
-                        </Link>
+                        <div className={styles.buttonContainer}>
+                            <Link to="/orderPage/geolocation">
+                                <Button>Забронировать</Button>
+                            </Link>
+                        </div>
                     </div>
                     <Footer />
                 </div>

@@ -86,9 +86,9 @@ const getCars = () => {
     };
 };
 
-const getCarsSuccess = newCities => ({
+const getCarsSuccess = newItem => ({
     type: "GET_CARS_SUCCESS",
-    payload: newCities
+    payload: newItem
 });
 
 const getCarsStarted = () => ({
@@ -97,6 +97,29 @@ const getCarsStarted = () => ({
 
 const getCarsFailure = error => ({
     type: "GET_CARS_FAILURE",
+    payload: error
+});
+
+const getCarCategory = () => {
+    return dispatch => {
+
+        API.getCarCategory()
+            .then(res => {
+                dispatch(getCarCategorySuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(getCarCategoryFailure(err.message));
+            });
+    };
+};
+
+const getCarCategorySuccess = newItem => ({
+    type: "GET_CAR_CATEGORY_SUCCESS",
+    payload: newItem
+});
+
+const getCarCategoryFailure = error => ({
+    type: "GET_CAR_CATEGORY_FAILURE",
     payload: error
 });
 
@@ -204,4 +227,5 @@ export {
     getGeolocationCity,
     getPointCity,
     getCars,
+    getCarCategory,
 };

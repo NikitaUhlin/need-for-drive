@@ -1,15 +1,11 @@
 import classNames from "classnames";
 import React from "react";
+import getImgPath from "../../../../../utils/functions/getImgPath";
 
 import styles from './carCard.module.sass'
 let cx = classNames.bind(styles)
 const CarCard = ({ name, priceMin, priceMax, path, onClickCar, id, car }) => {
-    let newPath
-    if (path.indexOf('base64') >= 0)
-        newPath = path
-    else
-        newPath = `https://api-factory.simbirsoft1.com${path}`
-
+    const newPath = getImgPath(path)
 
     const onClick = () => {
         onClickCar(id)

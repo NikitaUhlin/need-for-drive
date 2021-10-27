@@ -14,6 +14,8 @@ export const car = state => order(state).car
 
 export const points = state => state.points
 
+export const carCategory = state => state.carCategory
+
 export const pointCity = state => state.pointCity
 
 export const geolocationCity = state => state.geolocationCity

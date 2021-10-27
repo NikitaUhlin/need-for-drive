@@ -33,6 +33,7 @@ const OrderPage = () => {
     const onSubmit = () => {
         if (accessibleTab === activeTab)
             dispatch(updateAccessibleTab(accessibleTab + 1))
+
     }
 
     const onTabChange = (id) => {
@@ -70,6 +71,7 @@ const OrderPage = () => {
                         order={order}
                     />
                 }
+
             </div>
         </>
     )

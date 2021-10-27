@@ -1,5 +1,33 @@
 @import ../../../variables
 
+.buttonOrder
+    display: none
+    color: #fff
+    background-color: #00000095
+    font-weight: 700
+    font-size: 13px
+    line-height: 15px
+    padding: 17px 7px
+    border: 2px solid #0EC261
+    border-radius: 50%
+    transition: all 0.3s
+    position: fixed
+    bottom: 50px
+    right: 50px
+
+.buttonCloseOrder
+    display: none
+    color: #fff
+    font-weight: 700
+    font-size: 14px
+    line-height: 15px
+    background-color: #0EC261
+    border: none
+    padding: 16px
+    border-radius: 6px
+    margin-bottom: 48px
+    margin-left: 16px
+
 .container
     padding-top: 32px
     padding-left: 32px
@@ -56,11 +84,25 @@
         padding-right: 32px
 
 @media ( max-width: 767px)
+    .buttonOrder
+        display: block
+
+    .buttonCloseOrder
+        display: block
 
     .container
+        background-color: #fff
+        display: none
+        top: 0
+        left: 0
+        z-index: 3
+        height: 100%
         width: 100%
-        padding: 0
-        position: static
+        padding: 20px 0
+        position: fixed
+
+    .containerModal
+        display: block
 
     .title
         margin-left: 16px

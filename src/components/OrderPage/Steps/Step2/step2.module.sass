@@ -26,13 +26,22 @@
     .content
         width: 69%
 
+    .filter
+        font-size: 13px
+
 @media ( max-width: 1023px)
     .content
         width: 57%
     .cars
         grid-template-columns: repeat(1, 350px)
 
+    .filter
+        display: grid
+        grid-template-columns: 1fr 1fr
+        grid-gap: 12px 0
+
 @media ( max-width: 767px)
+
     .content
         padding-left: 16px
         width: 100%
@@ -42,8 +51,13 @@
         display: block
         margin: 16px 0
         padding-right: 16px
+        overflow: hidden
+        max-height: unset
 
     .filter
+        display: grid
+        grid-template-columns: 1fr 1fr 1fr
+        grid-gap: 25px 0
         margin-bottom: 0
         font-size: 13px
         margin-top: 16px

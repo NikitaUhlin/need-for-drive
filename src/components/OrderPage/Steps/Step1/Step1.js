@@ -2,11 +2,13 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Map, Placemark, YMaps } from 'react-yandex-maps';
 import Select from "react-select";
-
-import { getCities, getGeolocationCity, getPickUp, getPoint, getPointCity } from "../../../../store/actions";
+import classNames from "classnames";
+import { getCities, getGeolocationCity, getPickUp, getPoint, getPointCity, updateAccessibleTab } from "../../../../store/actions";
 import * as selectors from "../../../../store/selectors"
 
 import styles from "./step1.module.sass"
+
+let cx = classNames.bind(styles)
 
 const Step1 = ({ onSubmit, onChange }) => {
     const dispatch = useDispatch()
@@ -20,7 +22,12 @@ const Step1 = ({ onSubmit, onChange }) => {
     const geolocationCity = useSelector(selectors.geolocationCity)
 
     const [mapState, setMapState] = useState({ center: [54.992472, 39.076132], zoom: 11 })
+    const [isMapVisible, setIsMapVisible] = useState(false)
 
+    const classNameMap = cx({
+        [styles.map]: true,
+        [styles.activeMap]: isMapVisible,
+    })
     useEffect(() => {
         if (!cities.length)
             dispatch(getCities())
@@ -34,6 +41,8 @@ const Step1 = ({ onSubmit, onChange }) => {
     useEffect(() => {
         if (city && pickUp)
             onSubmit()
+        else
+            dispatch(updateAccessibleTab(1))
     }, [city, pickUp])
 
     useEffect(() => {
@@ -98,8 +107,10 @@ const Step1 = ({ onSubmit, onChange }) => {
         const selectedCity = cities.find((item) => e && e.value === item.id)
         onChange({
             city: e ? e.value : '',
-            pickUp: ''
+            pickUp: '',
+            car: ''
         })
+        setIsMapVisible(true)
 
         if (selectedCity)
             dispatch(getPointCity(selectedCity.name))
@@ -109,8 +120,10 @@ const Step1 = ({ onSubmit, onChange }) => {
         const selectedPickUp = pickUps.find((item) => e && e.value === item.id)
         onChange({
             city: selectedPickUp ? selectedPickUp.cityId.id : city,
-            pickUp: e ? e.value : ''
+            pickUp: e ? e.value : '',
+            car: ''
         })
+
     }
 
     const onPlacemarkClick = (id) => {
@@ -137,22 +150,28 @@ const Step1 = ({ onSubmit, onChange }) => {
     }
 
     const getGeolocation = (ymaps) => {
-        ymaps.geolocation.get()
-            .then((result) => {
-                dispatch(getGeolocationCity(`${result.geoObjects.position[1]}, ${result.geoObjects.position[0]}`))
-                setMapState({
-                    center: result.geoObjects.position
+        if (!city)
+            ymaps.geolocation.get()
+                .then((result) => {
+                    dispatch(getGeolocationCity(`${result.geoObjects.position[1]}, ${result.geoObjects.position[0]}`))
+                    setMapState({
+                        center: result.geoObjects.position
+                    })
                 })
-            })
     }
 
     useEffect(() => {
-        const geoCity = cities.find((item) => geolocationCity && geolocationCity === item.name)
-        if (geoCity)
-            onChange({
-                city: geoCity.id
-            })
-    }, [geolocationCity, cities])
+        if (!city) {
+            const geoCity = cities.find((item) => geolocationCity && geolocationCity === item.name)
+            if (geoCity) {
+                onChange({
+                    city: geoCity.id
+                })
+                setIsMapVisible(true)
+            }
+        }
+        else setIsMapVisible(true)
+    }, [geolocationCity, cities, city])
 
     return (
         <div className={styles.container}>
@@ -185,13 +204,13 @@ const Step1 = ({ onSubmit, onChange }) => {
                         />
                     </div>
                 </div>
+                <div className={classNameMap}>
+                    <div className={styles.mapTitle}>Выбрать на карте:</div>
+                    <YMaps
+                        query={{
+                            apikey: 'c2eeaac1-3b6e-4464-aa91-033699da3b02'
+                        }}>
 
-                <div className={styles.mapTitle}>Выбрать на карте:</div>
-                <YMaps
-                    query={{
-                        apikey: 'c2eeaac1-3b6e-4464-aa91-033699da3b02'
-                    }}>
-                    <div className={styles.map}>
                         <Map
                             onLoad={getGeolocation}
                             state={mapState}
@@ -212,8 +231,9 @@ const Step1 = ({ onSubmit, onChange }) => {
                                 )
                             })}
                         </Map>
-                    </div>
-                </YMaps>
+
+                    </YMaps>
+                </div>
             </div>
         </div >
     )

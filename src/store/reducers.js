@@ -13,7 +13,11 @@ const initialState = {
     points: [],
     geolocationCity: '',
     pointCity: '',
-    cars: []
+    cars: [],
+    carCategory: [{
+        id: '',
+        title: 'Все модели'
+    }]
 }
 
 const reducer = (state = initialState, action) => {
@@ -93,6 +97,26 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
+                error: action.payload
+            };
+
+        case "GET_CAR_CATEGORY_SUCCESS":
+            const category = action.payload.data.map((item) => (
+                {
+                    id: item.id,
+                    title: item.name
+                }
+            ))
+
+            return {
+                ...state,
+                error: null,
+                carCategory: [...state.carCategory,
+                ...category]
+            };
+        case "GET_CAR_CATEGORY_FAILURE":
+            return {
+                ...state,
                 error: action.payload
             };
         case "GET_POINT_STARTED":
