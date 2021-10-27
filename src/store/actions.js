@@ -72,6 +72,57 @@ const getPikUpFailure = error => ({
     payload: error
 });
 
+const getCars = () => {
+    return dispatch => {
+        dispatch(getCarsStarted());
+
+        API.getCars()
+            .then(res => {
+                dispatch(getCarsSuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(getCarsFailure(err.message));
+            });
+    };
+};
+
+const getCarsSuccess = newItem => ({
+    type: "GET_CARS_SUCCESS",
+    payload: newItem
+});
+
+const getCarsStarted = () => ({
+    type: "GET_CARS_STARTED"
+});
+
+const getCarsFailure = error => ({
+    type: "GET_CARS_FAILURE",
+    payload: error
+});
+
+const getCarCategory = () => {
+    return dispatch => {
+
+        API.getCarCategory()
+            .then(res => {
+                dispatch(getCarCategorySuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(getCarCategoryFailure(err.message));
+            });
+    };
+};
+
+const getCarCategorySuccess = newItem => ({
+    type: "GET_CAR_CATEGORY_SUCCESS",
+    payload: newItem
+});
+
+const getCarCategoryFailure = error => ({
+    type: "GET_CAR_CATEGORY_FAILURE",
+    payload: error
+});
+
 const getPoint = (payload) => {
     return dispatch => {
         dispatch(getPointStarted());
@@ -175,4 +226,6 @@ export {
     getPoint,
     getGeolocationCity,
     getPointCity,
+    getCars,
+    getCarCategory,
 };

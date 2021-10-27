@@ -25,7 +25,9 @@ const MainSlider = () => (
                         <div className={styles.description}>
                             Оставляйте машину на платных городских парковках и разрешенных местах, не нарушая ПДД, а также в аэропортах.
                         </div>
-                        <Button mode="darkGreen">Подробнее</Button>
+                        <div className={styles.buttonContainer}>
+                            <Button mode="darkGreen">Подробнее</Button>
+                        </div>
                     </div>
                 </div>
             </Slide>
@@ -40,7 +42,9 @@ const MainSlider = () => (
                         <div className={styles.description}>
                             Полная страховка автомобиля
                         </div>
-                        <Button mode="blue">Подробнее</Button>
+                        <div className={styles.buttonContainer}>
+                            <Button mode="blue">Подробнее</Button>
+                        </div>
                     </div>
                 </div>
             </Slide>
@@ -55,7 +59,9 @@ const MainSlider = () => (
                         <div className={styles.description}>
                             Полный бак на любой заправке города за наш счёт
                         </div>
-                        <Button mode="red">Подробнее</Button>
+                        <div className={styles.buttonContainer}>
+                            <Button mode="red">Подробнее</Button>
+                        </div>
                     </div>
                 </div>
             </Slide>
@@ -70,7 +76,9 @@ const MainSlider = () => (
                         <div className={styles.description}>
                             Автомобиль проходит еженедельное ТО
                         </div>
-                        <Button mode="purple">Подробнее</Button>
+                        <div className={styles.buttonContainer}>
+                            <Button mode="purple">Подробнее</Button>
+                        </div>
                     </div>
                 </div>
             </Slide>

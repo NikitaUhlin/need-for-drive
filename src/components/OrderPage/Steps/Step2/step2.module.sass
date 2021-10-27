@@ -1,0 +1,64 @@
+.content
+    width: 70%
+    padding-top: 32px
+
+.cars
+    display: grid
+    grid-template-columns: repeat(2, 369px)
+    max-height: 70vh
+    overflow: auto
+    &::-webkit-scrollbar-track
+        border-radius: 4px
+    &::-webkit-scrollbar
+        width: 6px
+    &::-webkit-scrollbar-thumb
+        width: 10px
+        border-radius: 4px
+        background: #0EC261
+
+.filter
+    display: flex
+    margin-bottom: 48px
+
+@media ( max-width: 1439px)
+    .cars
+        grid-template-columns: repeat(2, 280px)
+    .content
+        width: 69%
+
+    .filter
+        font-size: 13px
+
+@media ( max-width: 1023px)
+    .content
+        width: 57%
+    .cars
+        grid-template-columns: repeat(1, 350px)
+
+    .filter
+        display: grid
+        grid-template-columns: 1fr 1fr
+        grid-gap: 12px 0
+
+@media ( max-width: 767px)
+
+    .content
+        padding-left: 16px
+        width: 100%
+        padding-top: 0
+
+    .cars
+        display: block
+        margin: 16px 0
+        padding-right: 16px
+        overflow: hidden
+        max-height: unset
+
+    .filter
+        display: grid
+        grid-template-columns: 1fr 1fr 1fr
+        grid-gap: 25px 0
+        margin-bottom: 0
+        font-size: 13px
+        margin-top: 16px
+        margin-bottom: 16px
