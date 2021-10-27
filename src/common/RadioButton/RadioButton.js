@@ -5,21 +5,17 @@ import styles from "./radioButton.module.sass"
 
 let cx = classNames.bind(styles)
 
-const RadioButton = ({ name, children, onClick, isActive }) => {
+const RadioButton = ({ children, onClick, isActive }) => {
     const classNameRadio = cx({
         [styles.radioItem]: true,
         [styles.active]: isActive,
 
     })
 
-    const onRadioClick = () => {
-        onClick(name)
-    }
-
     return (
         <div
             className={classNameRadio}
-            onClick={onRadioClick}
+            onClick={onClick}
 
         >
             <div className={styles.radio} />

@@ -48,8 +48,7 @@ const Step2 = ({ onSubmit, onChange }) => {
                     {carCategory.map((item) => {
                         return <RadioButton
                             key={item.id}
-                            onClick={onCategorySelect}
-                            name={item.id}
+                            onClick={() => onCategorySelect(item.id)}
                             isActive={activeFilter === item.id}
                         >
                             {item.title}
@@ -64,12 +63,11 @@ const Step2 = ({ onSubmit, onChange }) => {
                         return (
                             <CarCard
                                 key={item.id}
-                                id={item.id}
                                 name={item.name}
                                 priceMin={item.priceMin}
                                 priceMax={item.priceMax}
                                 path={item.thumbnail.path}
-                                onClickCar={onClickCar}
+                                onClickCar={() => onClickCar(item.id)}
                                 car={car}
                             />
                         )

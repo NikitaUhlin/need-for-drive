@@ -4,6 +4,7 @@ import classNames from "classnames";
 import * as selectors from "../../../store/selectors"
 import Button from "../../../common/Button/Button";
 
+import arrowBack from "../../../assets/icons/arrowBack.svg"
 import styles from "./orderInfo.module.sass"
 
 
@@ -55,12 +56,8 @@ const OrderInfo = ({ onClick, activeTab, order }) => {
             </button>
 
             <div className={classNameOrderInfo}>
-                <button
-                    className={styles.buttonCloseOrder}
-                    onClick={onCloseModal}
-                >
-                    Назад
-                </button>
+                <img className={styles.buttonCloseOrder} onClick={onCloseModal} src={arrowBack} alt="" />
+
                 <div className={styles.title}>Ваш заказ:</div>
                 <div className={styles.list}>
                     <div className={styles.listItem}>

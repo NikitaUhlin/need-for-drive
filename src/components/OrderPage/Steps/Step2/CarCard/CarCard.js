@@ -7,9 +7,6 @@ let cx = classNames.bind(styles)
 const CarCard = ({ name, priceMin, priceMax, path, onClickCar, id, car }) => {
     const newPath = getImgPath(path)
 
-    const onClick = () => {
-        onClickCar(id)
-    }
     const classNameCard = cx({
         [styles.container]: true,
         [styles.active]: car === id,
@@ -17,7 +14,7 @@ const CarCard = ({ name, priceMin, priceMax, path, onClickCar, id, car }) => {
     })
     return (
         <div
-            onClick={onClick}
+            onClick={onClickCar}
             className={classNameCard}
         >
             <div className={styles.name}>
