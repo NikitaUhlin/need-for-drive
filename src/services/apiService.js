@@ -19,6 +19,13 @@ class ApiService {
     getPickUp() {
         return this.get("point");
     }
+
+    getCars() {
+        return this.get("car")
+    }
+    getCarCategory() {
+        return this.get("category")
+    }
 }
 
 const API = new ApiService();

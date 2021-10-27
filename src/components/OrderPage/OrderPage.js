@@ -12,6 +12,7 @@ import { updateAccessibleTab, updateActiveTab, updateOrder } from "../../store/a
 import * as selectors from "../../store/selectors";
 
 import styles from "./orderPage.module.sass"
+import Step2 from "./Steps/Step2/Step2";
 
 const tabs = ['geolocation', 'model', 'additional', 'total']
 
@@ -32,6 +33,7 @@ const OrderPage = () => {
     const onSubmit = () => {
         if (accessibleTab === activeTab)
             dispatch(updateAccessibleTab(accessibleTab + 1))
+
     }
 
     const onTabChange = (id) => {
@@ -60,6 +62,7 @@ const OrderPage = () => {
                     accessibleTab={accessibleTab}
                 />
                 {activeTab === 1 && <Step1 onSubmit={onSubmit} onChange={onChange} />}
+                {activeTab === 2 && <Step2 onSubmit={onSubmit} onChange={onChange} />}
 
                 {(order.city && order.pickUp) &&
                     <OrderInfo
@@ -68,6 +71,7 @@ const OrderPage = () => {
                         order={order}
                     />
                 }
+
             </div>
         </>
     )

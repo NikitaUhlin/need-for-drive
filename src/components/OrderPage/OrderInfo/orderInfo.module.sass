@@ -1,5 +1,26 @@
 @import ../../../variables
 
+.buttonOrder
+    display: none
+    color: #fff
+    background-color: #00000095
+    font-weight: 700
+    font-size: 13px
+    line-height: 15px
+    padding: 17px 7px
+    border: 2px solid #0EC261
+    border-radius: 50%
+    transition: all 0.3s
+    position: fixed
+    bottom: 50px
+    right: 50px
+
+.buttonCloseOrder
+    display: none
+    margin-bottom: 48px
+    margin-left: 16px
+    height: 32px
+
 .container
     padding-top: 32px
     padding-left: 32px
@@ -22,33 +43,23 @@
     color: $main_gray
     text-align: end
 
-.pickUpPoint
-    max-width: 40em
-    padding: 0
-    overflow-x: hidden
-    list-style: none
+.list
     font-size: 14px
     line-height: 16px
     font-weight: 300
 
-    & li:before
-        float: left
-        width: 0
-        white-space: nowrap
-        content: "....................""....................""....................""...................."
+.listItem
+    display: flex
+    align-items: flex-end
+    margin-bottom: 16px
 
-    & span:first-child
-        padding-right: 0.33em
-        background: white
-        color: $main_black
+.dots
+    flex-grow: 1
+    border-bottom: 1px dotted #999999
+    margin: 0 5px
 
-    & span + span
-        float: right
-        padding-left: 0.33em
-        background: white
-        text-align: right
-        color: $main_gray
-        width: 120px
+.value
+    color: #999999
 
 .price
     font-weight: 400
@@ -57,7 +68,7 @@
     margin-top: 32px
     margin-bottom: 32px
 
-    & span
+    span
         font-weight: 500
 
 @media ( max-width: 1023px)
@@ -66,11 +77,25 @@
         padding-right: 32px
 
 @media ( max-width: 767px)
+    .buttonOrder
+        display: block
+
+    .buttonCloseOrder
+        display: block
 
     .container
+        background-color: #fff
+        display: none
+        top: 0
+        left: 0
+        z-index: 3
+        height: 100%
         width: 100%
-        padding: 0
-        position: static
+        padding: 20px 0
+        position: fixed
+
+    .containerModal
+        display: block
 
     .title
         margin-left: 16px
@@ -81,4 +106,7 @@
         margin-left: 16px
 
     .price
+        margin: 32px 16px
+
+    .list
         margin: 32px 16px
