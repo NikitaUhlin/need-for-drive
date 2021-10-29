@@ -20,13 +20,17 @@ const OrderInfo = ({ onClick, activeTab, order }) => {
     const rate = useSelector(selectors.rate)
     const startDate = useSelector(selectors.startDate)
     const endDate = useSelector(selectors.endDate)
+
     const rangeDate = endDate - startDate
+
     const city = useMemo(() => cities.find((item) => item.id === order.city), [cities, order.city])
     const pickUp = useMemo(() => pickUps.find((item) => item.id === order.pickUp), [pickUps, order.pickUp])
     const car = useMemo(() => cars.find((item) => item.id === order.car), [cars, order.car])
     const selectRate = useMemo(() => rate.find((item) => item.id === order.selectRate), [rate, order.selectRate])
     const selectAdditional = useMemo(() => additional.filter((item) => order.additional.includes(item.id)), [order.additional])
+
     const [isModalOpen, setIsModalOpen] = useState(false)
+
     const classNameOrderInfo = cx({
         [styles.container]: true,
         [styles.containerModal]: isModalOpen,
@@ -46,6 +50,7 @@ const OrderInfo = ({ onClick, activeTab, order }) => {
 
         default: active = false
     }
+
     const price = useMemo(() => {
         let result = 0
         if (selectRate) {
@@ -67,15 +72,13 @@ const OrderInfo = ({ onClick, activeTab, order }) => {
             result += selectAdditional.reduce((acc, current) => acc += current.price, 0)
         }
 
-
         return result
     }, [selectRate, endDate, selectAdditional])
-
-
 
     const difDays = Math.floor(rangeDate / (24 * 60 * 60 * 1000))
     const difHours = Math.floor((rangeDate / (24 * 60 * 60 * 1000) - difDays) * 24)
     const difMinutes = Math.floor(((rangeDate / (24 * 60 * 60 * 1000) - difDays) * 24 - difHours) * 60)
+
     useEffect(() => {
         setIsModalOpen(false)
     }, [activeTab])

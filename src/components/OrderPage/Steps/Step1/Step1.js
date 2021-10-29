@@ -131,7 +131,6 @@ const Step1 = ({ onSubmit, onChange }) => {
             endDate: null,
             additional: []
         })
-
     }
 
     const onPlacemarkClick = (id) => {

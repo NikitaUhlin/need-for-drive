@@ -1,16 +1,17 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DatePicker from "react-datepicker";
-import RadioButton from "../../../../common/RadioButton/RadioButton";
 
+import RadioButton from "../../../../common/RadioButton/RadioButton";
 import * as selectors from "../../../../store/selectors";
 import { additional } from "../../../../utils/constants/additionals";
-import "react-datepicker/dist/react-datepicker.css";
-import styles from './step3.module.sass'
-import { getRate } from "../../../../store/actions";
+import { getRate, updateAccessibleTab } from "../../../../store/actions";
 import Checkbox from "../../../../common/Checkbox/Checkbox";
 
-const Step3 = ({ onChange }) => {
+import "react-datepicker/dist/react-datepicker.css";
+import styles from './step3.module.sass'
+
+const Step3 = ({ onChange, onSubmit }) => {
     const dispatch = useDispatch()
     const car = useSelector(selectors.car)
     const cars = useSelector(selectors.cars)
@@ -24,6 +25,36 @@ const Step3 = ({ onChange }) => {
         const selectedCarColors = cars.find((item) => car === item.id).colors
         return ['Любой', ...selectedCarColors]
     }, [car, cars]);
+
+
+    useEffect(() => {
+        if (!startDate || !endDate)
+            onChange({
+                selectRate: ''
+            })
+    }, [])
+
+    useEffect(() => {
+        if (startDate && endDate && !selectRate) {
+            onChange({
+                selectRate: rate[0].id
+            })
+        }
+    }, [startDate, endDate])
+
+    useEffect(() => {
+        if (!rate.length)
+            dispatch(getRate())
+
+    }, [dispatch])
+
+    useEffect(() => {
+        if (startDate & endDate)
+            onSubmit()
+        else
+            dispatch(updateAccessibleTab(3))
+    }, [startDate, endDate])
+
     const setStartDate = (data) => {
         onChange({
             startDate: data,
@@ -36,14 +67,6 @@ const Step3 = ({ onChange }) => {
         })
     }
 
-    // const [additionalServices, setAdditionalServices] = useState([]);
-    useEffect(() => {
-        if (startDate && endDate && !selectRate) {
-            onChange({
-                selectRate: rate[0].id
-            })
-        }
-    }, [startDate, endDate])
     const onCheck = (id) => {
         if (additionalOptions.includes(id))
             onChange({
@@ -53,37 +76,34 @@ const Step3 = ({ onChange }) => {
             onChange({
                 additional: [...additionalOptions, id]
             })
-
     }
-
-    useEffect(() => {
-        if (!rate.length)
-            dispatch(getRate())
-
-    }, [dispatch])
 
     const onClickColor = (item) => {
         onChange({
             selectColor: item
         })
     }
+
     const filterPassedTimeStart = (time) => {
         const currentDate = new Date();
         const selectedDate = new Date(time);
 
         return currentDate.getTime() < selectedDate.getTime();
     }
+
     const filterPassedTimeEnd = (time) => {
-        const currentDate = startDate;
+        const currentDate = startDate || new Date();
         const selectedDate = new Date(time);
 
         return currentDate.getTime() < selectedDate.getTime();
     }
+
     const onClickRate = (id) => {
         onChange({
             selectRate: id
         })
     }
+
     return (
         <div className={styles.container}>
             <div className={styles.label}>Цвет</div>
@@ -128,12 +148,13 @@ const Step3 = ({ onChange }) => {
                     selectsEnd
                     showTimeSelect
                     className={styles.datePicker}
-                    minDate={startDate}
+                    minDate={startDate || new Date()}
                     filterTime={filterPassedTimeEnd}
                     selected={endDate}
                     onChange={(date) => setEndDate(date)}
                 />
             </div>
+
             <div className={styles.label}>Тариф</div>
             {rate.map((item) => {
                 return (
@@ -146,6 +167,7 @@ const Step3 = ({ onChange }) => {
                     </RadioButton>
                 )
             })}
+
             <div className={styles.label}>Доп услуги</div>
             <div className={styles.additionalSelect}>
                 {additional.map((item) => {
