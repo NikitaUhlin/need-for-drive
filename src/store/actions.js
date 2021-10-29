@@ -207,6 +207,34 @@ const getPointCityFailure = error => ({
     payload: error
 });
 
+const getRate = () => {
+    return dispatch => {
+        dispatch(getRateStarted());
+
+        API.getRate()
+            .then(res => {
+                dispatch(getRateSuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(getRateFailure(err.message));
+            });
+    };
+};
+
+const getRateSuccess = newItem => ({
+    type: "GET_RATE_SUCCESS",
+    payload: newItem
+});
+
+const getRateStarted = () => ({
+    type: "GET_RATE_STARTED"
+});
+
+const getRateFailure = error => ({
+    type: "GET_RATE_FAILURE",
+    payload: error
+});
+
 
 export {
     updateOrder,
@@ -228,4 +256,5 @@ export {
     getPointCity,
     getCars,
     getCarCategory,
+    getRate,
 };

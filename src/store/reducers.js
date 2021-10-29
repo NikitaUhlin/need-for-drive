@@ -1,8 +1,13 @@
-const initialState = {
+export const initialState = {
     order: {
         city: '',
         pickUp: '',
-        car: ''
+        car: '',
+        selectColor: 'Любой',
+        selectRate: '',
+        startDate: null,
+        endDate: null,
+        additional: []
     },
     activeTab: 1,
     accessibleTab: 1,
@@ -17,7 +22,9 @@ const initialState = {
     carCategory: [{
         id: '',
         title: 'Все модели'
-    }]
+    }],
+    rate: [],
+
 }
 
 const reducer = (state = initialState, action) => {
@@ -94,6 +101,25 @@ const reducer = (state = initialState, action) => {
                 cars: action.payload.data
             };
         case "GET_CARS_FAILURE":
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            };
+
+        case "GET_RATE_STARTED":
+            return {
+                ...state,
+                loading: true
+            };
+        case "GET_RATE_SUCCESS":
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                rate: action.payload.data
+            };
+        case "GET_RATE_FAILURE":
             return {
                 ...state,
                 loading: false,

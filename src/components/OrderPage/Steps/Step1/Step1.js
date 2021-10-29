@@ -108,7 +108,11 @@ const Step1 = ({ onSubmit, onChange }) => {
         onChange({
             city: e ? e.value : '',
             pickUp: '',
-            car: ''
+            car: '',
+            selectRate: '',
+            startDate: null,
+            endDate: null,
+            additional: []
         })
         setIsMapVisible(true)
 
@@ -121,7 +125,11 @@ const Step1 = ({ onSubmit, onChange }) => {
         onChange({
             city: selectedPickUp ? selectedPickUp.cityId.id : city,
             pickUp: e ? e.value : '',
-            car: ''
+            car: '',
+            selectRate: '',
+            startDate: null,
+            endDate: null,
+            additional: []
         })
 
     }

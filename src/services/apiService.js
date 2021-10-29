@@ -26,6 +26,9 @@ class ApiService {
     getCarCategory() {
         return this.get("category")
     }
+    getRate() {
+        return this.get("rate")
+    }
 }
 
 const API = new ApiService();

@@ -1,0 +1,63 @@
+.container
+    width: 70%
+
+.colorSelect
+    display: flex
+
+.label
+    margin-top: 32px
+    margin-bottom: 16px
+    font-weight: 300
+    font-size: 14px
+    line-height: 16px
+    color: #121212
+
+.additionalSelect
+    font-size: 14px
+    line-height: 16px
+
+.date
+    display: flex
+    align-items: center
+    width: 250px
+    margin-top: 12px
+
+.datePicker
+    margin-left: 8px
+    border: none
+    border-bottom: 1px solid #999999
+    width: 100%
+    font-family: Roboto
+    font-style: normal
+    font-weight: 300
+    font-size: 14px
+    line-height: 16px
+
+    &+button::after
+        background-color: transparent
+        font-size: 14px
+        color: #191919
+
+.titleDatePicker
+    font-weight: 300
+    font-size: 14px
+    line-height: 16px
+    color: #121212
+    min-width: 18px
+    text-align: right
+
+@media (max-width: 1023px)
+
+    .container
+        width: 60%
+
+    .colorSelect
+        display: grid
+        grid-template-columns: 1fr 1fr
+
+@media (max-width: 767px)
+    .colorSelect
+        grid-template-columns: 1fr 1fr 1fr
+
+    .container
+        padding-left: 16px

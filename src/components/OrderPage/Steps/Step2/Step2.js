@@ -27,7 +27,12 @@ const Step2 = ({ onSubmit, onChange }) => {
 
     const onClickCar = (id) => {
         onChange({
-            car: id
+            car: id,
+            selectColor: 'Любой',
+            selectRate: '',
+            startDate: null,
+            endDate: null,
+            additional: []
         })
     }
     useEffect(() => {
@@ -63,6 +68,7 @@ const Step2 = ({ onSubmit, onChange }) => {
                         return (
                             <CarCard
                                 key={item.id}
+                                id={item.id}
                                 name={item.name}
                                 priceMin={item.priceMin}
                                 priceMax={item.priceMax}

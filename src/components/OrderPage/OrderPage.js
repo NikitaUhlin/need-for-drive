@@ -13,6 +13,7 @@ import * as selectors from "../../store/selectors";
 
 import styles from "./orderPage.module.sass"
 import Step2 from "./Steps/Step2/Step2";
+import Step3 from "./Steps/Step3/Step3";
 
 const tabs = ['geolocation', 'model', 'additional', 'total']
 
@@ -63,6 +64,7 @@ const OrderPage = () => {
                 />
                 {activeTab === 1 && <Step1 onSubmit={onSubmit} onChange={onChange} />}
                 {activeTab === 2 && <Step2 onSubmit={onSubmit} onChange={onChange} />}
+                {activeTab === 3 && <Step3 onSubmit={onSubmit} onChange={onChange} />}
 
                 {(order.city && order.pickUp) &&
                     <OrderInfo
