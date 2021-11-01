@@ -74,11 +74,15 @@ const Step1 = ({ onSubmit, onChange }) => {
     }, [pickUp, points])
 
     useEffect(() => {
-        if (pointCity)
+        if (pointCity) {
             setMapState({
                 center: pointCity.split(' ').reverse(),
                 zoom: 11
             })
+            setIsMapVisible(true)
+        }
+        else
+            setIsMapVisible(false)
 
     }, [pointCity])
 
@@ -108,7 +112,11 @@ const Step1 = ({ onSubmit, onChange }) => {
         onChange({
             city: e ? e.value : '',
             pickUp: '',
-            car: ''
+            car: '',
+            selectRate: '',
+            startDate: null,
+            endDate: null,
+            additional: []
         })
         setIsMapVisible(true)
 
@@ -121,9 +129,12 @@ const Step1 = ({ onSubmit, onChange }) => {
         onChange({
             city: selectedPickUp ? selectedPickUp.cityId.id : city,
             pickUp: e ? e.value : '',
-            car: ''
+            car: '',
+            selectRate: '',
+            startDate: null,
+            endDate: null,
+            additional: []
         })
-
     }
 
     const onPlacemarkClick = (id) => {
