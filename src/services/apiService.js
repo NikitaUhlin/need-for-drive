@@ -12,6 +12,14 @@ class ApiService {
         return this.api.get(url)
     }
 
+    post(url, body) {
+        return this.api.post(url, body)
+    }
+
+    createOrder(body) {
+        return this.post("order", body)
+    }
+
     getCities() {
         return this.get("city");
     }

@@ -7,7 +7,8 @@ export const initialState = {
         selectRate: '',
         startDate: null,
         endDate: null,
-        additional: []
+        additional: [],
+        price: 0
     },
     activeTab: 1,
     accessibleTab: 1,
@@ -24,6 +25,7 @@ export const initialState = {
         title: 'Все модели'
     }],
     rate: [],
+    orderId: ''
 
 }
 
@@ -196,6 +198,25 @@ const reducer = (state = initialState, action) => {
                 geolocationCity: action.payload.data.response.GeoObjectCollection.featureMember[0].GeoObject.metaDataProperty.GeocoderMetaData.Address.formatted.split(', ')[1]
             };
         case "GET_GEOLOCATION_CITY_FAILURE":
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            };
+
+        case "CREATE_ORDER_STARTED":
+            return {
+                ...state,
+                loading: true
+            };
+        case "CREATE_ORDER_SUCCESS":
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                orderId: action.payload.data.id
+            };
+        case "CREATE_ORDER_FAILURE":
             return {
                 ...state,
                 loading: false,

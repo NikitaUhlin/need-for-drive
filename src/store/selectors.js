@@ -37,3 +37,5 @@ export const loading = state => state.loading
 export const activeTab = state => state.activeTab
 
 export const accessibleTab = state => state.accessibleTab
+
+export const orderId = state => state.orderId

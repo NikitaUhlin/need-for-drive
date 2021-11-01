@@ -12,7 +12,7 @@ import { additional } from "../../../utils/constants/additionals";
 let cx = classNames.bind(styles)
 const buttonText = ["Выбрать модель", "Дополнительно", "Итого", "Заказать"]
 
-const OrderInfo = ({ onClick, activeTab, order }) => {
+const OrderInfo = ({ onClick, activeTab, order, onChange }) => {
     const cities = useSelector(selectors.cities)
     const pickUps = useSelector(selectors.pickUps)
     const cars = useSelector(selectors.cars)
@@ -47,6 +47,9 @@ const OrderInfo = ({ onClick, activeTab, order }) => {
         case 3:
             active = order.selectRate && startDate && endDate
             break;
+        case 4:
+            active = true
+            break;
 
         default: active = false
     }
@@ -74,6 +77,14 @@ const OrderInfo = ({ onClick, activeTab, order }) => {
 
         return result
     }, [selectRate, endDate, selectAdditional])
+
+    useEffect(() => {
+        if (price) {
+            onChange({
+                price: price
+            })
+        }
+    }, [price])
 
     const difDays = Math.floor(rangeDate / (24 * 60 * 60 * 1000))
     const difHours = Math.floor((rangeDate / (24 * 60 * 60 * 1000) - difDays) * 24)

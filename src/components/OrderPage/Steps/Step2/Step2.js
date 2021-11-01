@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import CarCard from "./CarCard/CarCard";
 import * as selectors from "../../../../store/selectors";
-import { getCarCategory, getCars } from "../../../../store/actions";
+import { getCarCategory, getCars, updateAccessibleTab } from "../../../../store/actions";
 import RadioButton from "../../../../common/RadioButton/RadioButton";
 import Spinner from "../../../../common/Spinner/Spinner";
 
@@ -17,8 +17,6 @@ const Step2 = ({ onSubmit, onChange }) => {
     const cars = useSelector(selectors.cars)
 
     const [activeFilter, setActiveFilter] = useState(carCategory[0].id)
-
-
 
     const filteredCars = useMemo(() => {
         const selectedFilter = carCategory.find((item) => item.id === activeFilter)
@@ -49,6 +47,7 @@ const Step2 = ({ onSubmit, onChange }) => {
             endDate: null,
             additional: []
         })
+        dispatch(updateAccessibleTab(3))
     }
 
     return (

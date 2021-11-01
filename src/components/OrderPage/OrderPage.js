@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux"
 
@@ -8,12 +8,14 @@ import Step1 from "./Steps/Step1/Step1";
 import TabsMenu from "./TabsMenu/TabsMenu";
 import OrderInfo from "./OrderInfo/OrderInfo";
 
-import { updateAccessibleTab, updateActiveTab, updateOrder } from "../../store/actions";
+import { createOrder, updateAccessibleTab, updateActiveTab, updateOrder } from "../../store/actions";
 import * as selectors from "../../store/selectors";
 
 import styles from "./orderPage.module.sass"
 import Step2 from "./Steps/Step2/Step2";
 import Step3 from "./Steps/Step3/Step3";
+import Step4 from "./Steps/Step4/Step4";
+import Modal from "../../common/Modal/Modal";
 
 const tabs = ['geolocation', 'model', 'additional', 'total']
 
@@ -21,6 +23,8 @@ const OrderPage = () => {
     const order = useSelector(selectors.order)
     const activeTab = useSelector(selectors.activeTab)
     const accessibleTab = useSelector(selectors.accessibleTab)
+
+    const [orderConfirm, setOrderConfirm] = useState(false)
 
     const dispatch = useDispatch();
 
@@ -48,9 +52,36 @@ const OrderPage = () => {
     const onChange = data => dispatch(updateOrder(data))
 
     const onClick = () => {
-        dispatch(updateActiveTab(activeTab + 1))
-        history.push(`/orderPage/${tabs[activeTab]}`)
+        if (activeTab < 4) {
+            dispatch(updateActiveTab(activeTab + 1))
+            history.push(`/orderPage/${tabs[activeTab]}`)
+        }
+        else
+            setOrderConfirm(true)
     }
+    const onOk = () => {
+        const orderData = {
+            orderStatusId: '5e26a1f0099b810b946c5d8b',
+            cityId: order.city,
+            pointId: order.pickUp,
+            carId: order.car,
+            color: order.selectColor,
+            dateFrom: new Date(order.startDate).getTime(),
+            dateTo: new Date(order.endDate).getTime(),
+            rateId: order.selectRate,
+            price: order.price,
+            isFullTank: order.additional.includes(1),
+            isNeedChildChair: order.additional.includes(2),
+            isRightWheel: order.additional.includes(3)
+
+        }
+        dispatch(createOrder(orderData))
+        setOrderConfirm(false)
+
+    }
+
+    const onCancel = () =>
+        setOrderConfirm(false)
 
     return (
         <>
@@ -65,15 +96,17 @@ const OrderPage = () => {
                 {activeTab === 1 && <Step1 onSubmit={onSubmit} onChange={onChange} />}
                 {activeTab === 2 && <Step2 onSubmit={onSubmit} onChange={onChange} />}
                 {activeTab === 3 && <Step3 onSubmit={onSubmit} onChange={onChange} />}
+                {activeTab === 4 && <Step4 onSubmit={onSubmit} onChange={onChange} />}
 
                 {(order.city && order.pickUp) &&
                     <OrderInfo
                         onClick={onClick}
                         activeTab={activeTab}
+                        onChange={onChange}
                         order={order}
                     />
                 }
-
+                {orderConfirm && <Modal onOk={onOk} onCancel={onCancel} />}
             </div>
         </>
     )

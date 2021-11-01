@@ -235,6 +235,34 @@ const getRateFailure = error => ({
     payload: error
 });
 
+const createOrder = (order) => {
+    return dispatch => {
+        dispatch(createOrderStarted());
+
+        API.createOrder(order)
+            .then(res => {
+                dispatch(createOrderSuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(createOrderFailure(err.message));
+            });
+    };
+};
+
+const createOrderSuccess = newItem => ({
+    type: "CREATE_ORDER_SUCCESS",
+    payload: newItem
+});
+
+const createOrderStarted = () => ({
+    type: "CREATE_ORDER_STARTED"
+});
+
+const createOrderFailure = error => ({
+    type: "CREATE_ORDER_FAILURE",
+    payload: error
+});
+
 
 export {
     updateOrder,
@@ -257,4 +285,5 @@ export {
     getCars,
     getCarCategory,
     getRate,
+    createOrder
 };
