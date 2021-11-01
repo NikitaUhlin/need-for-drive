@@ -12,7 +12,19 @@ export const pickUp = state => order(state).pickUp
 
 export const car = state => order(state).car
 
+export const selectColor = state => order(state).selectColor
+
+export const selectRate = state => order(state).selectRate
+
+export const startDate = state => order(state).startDate
+
+export const endDate = state => order(state).endDate
+
+export const additional = state => order(state).additional
+
 export const points = state => state.points
+
+export const rate = state => state.rate
 
 export const carCategory = state => state.carCategory
 

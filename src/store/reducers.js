@@ -1,8 +1,13 @@
-const initialState = {
+export const initialState = {
     order: {
         city: '',
         pickUp: '',
-        car: ''
+        car: '',
+        selectColor: '',
+        selectRate: '',
+        startDate: null,
+        endDate: null,
+        additional: []
     },
     activeTab: 1,
     accessibleTab: 1,
@@ -17,7 +22,9 @@ const initialState = {
     carCategory: [{
         id: '',
         title: 'Все модели'
-    }]
+    }],
+    rate: [],
+
 }
 
 const reducer = (state = initialState, action) => {
@@ -100,6 +107,25 @@ const reducer = (state = initialState, action) => {
                 error: action.payload
             };
 
+        case "GET_RATE_STARTED":
+            return {
+                ...state,
+                loading: true
+            };
+        case "GET_RATE_SUCCESS":
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                rate: action.payload.data
+            };
+        case "GET_RATE_FAILURE":
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            };
+
         case "GET_CAR_CATEGORY_SUCCESS":
             const category = action.payload.data.map((item) => (
                 {
@@ -143,11 +169,12 @@ const reducer = (state = initialState, action) => {
                 loading: true
             };
         case "GET_POINT_CITY_SUCCESS":
+            const pointCity = action.payload.data.response.GeoObjectCollection.featureMember[0]
             return {
                 ...state,
                 loading: false,
                 error: null,
-                pointCity: action.payload.data.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos
+                pointCity: pointCity ? pointCity.GeoObject.Point.pos : null
             };
         case "GET_POINT_CITY_FAILURE":
             return {
