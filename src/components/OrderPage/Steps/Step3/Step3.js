@@ -8,7 +8,8 @@ import { additional } from "../../../../utils/constants/additionals";
 import { getRate, updateAccessibleTab } from "../../../../store/actions";
 import Checkbox from "../../../../common/Checkbox/Checkbox";
 
-import "react-datepicker/dist/react-datepicker.css";
+import "react-datepicker/dist/react-datepicker.css"
+import "./calendar.sass"
 import styles from './step3.module.sass'
 
 const Step3 = ({ onChange, onSubmit }) => {
@@ -30,6 +31,7 @@ const Step3 = ({ onChange, onSubmit }) => {
     useEffect(() => {
         if (!startDate || !endDate)
             onChange({
+                selectColor: 'Любой',
                 selectRate: ''
             })
     }, [])
@@ -78,6 +80,8 @@ const Step3 = ({ onChange, onSubmit }) => {
             })
     }
 
+
+
     const onClickColor = (item) => {
         onChange({
             selectColor: item
@@ -108,16 +112,15 @@ const Step3 = ({ onChange, onSubmit }) => {
         <div className={styles.container}>
             <div className={styles.label}>Цвет</div>
             <div className={styles.colorSelect}>
-                {selectedColors.map((item) => {
-                    return (
-                        <RadioButton
-                            onClick={() => onClickColor(item)}
-                            key={item}
-                            isActive={item === selectColor}
+                {selectedColors.map((item) => (
+                    <RadioButton
+                        onClick={() => onClickColor(item)}
+                        key={item}
+                        isActive={item === selectColor}
 
-                        >{item}</RadioButton>
-                    )
-                })}
+                    >{item}</RadioButton>
+                )
+                )}
             </div>
 
             <div className={styles.label}>Дата аренды</div>

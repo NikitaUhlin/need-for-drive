@@ -74,11 +74,15 @@ const Step1 = ({ onSubmit, onChange }) => {
     }, [pickUp, points])
 
     useEffect(() => {
-        if (pointCity)
+        if (pointCity) {
             setMapState({
                 center: pointCity.split(' ').reverse(),
                 zoom: 11
             })
+            setIsMapVisible(true)
+        }
+        else
+            setIsMapVisible(false)
 
     }, [pointCity])
 

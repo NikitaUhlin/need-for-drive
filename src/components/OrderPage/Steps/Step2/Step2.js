@@ -37,14 +37,13 @@ const Step2 = ({ onSubmit, onChange }) => {
             dispatch(getCarCategory())
     }, [dispatch])
 
-    const onCategorySelect = (id) => {
+    const onCategorySelect = (id) =>
         setActiveFilter(id)
-    }
+
 
     const onClickCar = (id) => {
         onChange({
             car: id,
-            selectColor: 'Любой',
             selectRate: '',
             startDate: null,
             endDate: null,

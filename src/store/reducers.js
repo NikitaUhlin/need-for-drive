@@ -3,7 +3,7 @@ export const initialState = {
         city: '',
         pickUp: '',
         car: '',
-        selectColor: 'Любой',
+        selectColor: '',
         selectRate: '',
         startDate: null,
         endDate: null,
@@ -169,11 +169,12 @@ const reducer = (state = initialState, action) => {
                 loading: true
             };
         case "GET_POINT_CITY_SUCCESS":
+            const pointCity = action.payload.data.response.GeoObjectCollection.featureMember[0]
             return {
                 ...state,
                 loading: false,
                 error: null,
-                pointCity: action.payload.data.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos
+                pointCity: pointCity ? pointCity.GeoObject.Point.pos : null
             };
         case "GET_POINT_CITY_FAILURE":
             return {

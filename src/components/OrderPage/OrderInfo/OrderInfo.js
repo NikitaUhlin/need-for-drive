@@ -45,7 +45,7 @@ const OrderInfo = ({ onClick, activeTab, order }) => {
             active = order.car
             break;
         case 3:
-            active = order.selectRate && rangeDate > 0
+            active = order.selectRate && startDate && endDate
             break;
 
         default: active = false
@@ -53,7 +53,7 @@ const OrderInfo = ({ onClick, activeTab, order }) => {
 
     const price = useMemo(() => {
         let result = 0
-        if (selectRate) {
+        if (selectRate && endDate && startDate) {
             switch (selectRate.rateTypeId.unit) {
                 case "мин":
                     result = Math.ceil(rangeDate / (1000 * 60)) * selectRate.price
@@ -120,7 +120,7 @@ const OrderInfo = ({ onClick, activeTab, order }) => {
                             {car.name}
                         </div>
                     </div>}
-                    {car && <div className={styles.listItem}>
+                    {selectColor && <div className={styles.listItem}>
                         <div className={styles.label}>
                             Цвет
                         </div>
@@ -129,7 +129,7 @@ const OrderInfo = ({ onClick, activeTab, order }) => {
                             {selectColor}
                         </div>
                     </div>}
-                    {rangeDate > 0 && <div className={styles.listItem}>
+                    {startDate && endDate && <div className={styles.listItem}>
                         <div className={styles.label}>
                             Длительность аренды
                         </div>
