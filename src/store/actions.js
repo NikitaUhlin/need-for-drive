@@ -263,6 +263,65 @@ const createOrderFailure = error => ({
     payload: error
 });
 
+const changeOrder = (order) => {
+    return dispatch => {
+        dispatch(changeOrderStarted());
+
+        API.changeOrder(order.id, order.body)
+            .then(res => {
+                dispatch(changeOrderSuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(changeOrderFailure(err.message));
+            });
+    };
+};
+
+const changeOrderSuccess = newItem => ({
+    type: "CHANGE_ORDER_SUCCESS",
+    payload: newItem
+});
+
+const changeOrderStarted = () => ({
+    type: "CHANGE_ORDER_STARTED"
+});
+
+const changeOrderFailure = error => ({
+    type: "CHANGE_ORDER_FAILURE",
+    payload: error
+});
+
+const getOrder = (id) => {
+    return dispatch => {
+        dispatch(getOrderStarted());
+
+        API.getOrder(id)
+            .then(res => {
+                dispatch(getOrderSuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(getOrderFailure(err.message));
+            });
+    };
+};
+
+const getOrderSuccess = newItem => ({
+    type: "GET_ORDER_SUCCESS",
+    payload: newItem
+});
+
+const getOrderStarted = () => ({
+    type: "GET_ORDER_STARTED"
+});
+
+const getOrderFailure = error => ({
+    type: "GET_ORDER_FAILURE",
+    payload: error
+});
+
+const reset = () => ({
+    type: "RESET"
+})
 
 export {
     updateOrder,
@@ -285,5 +344,8 @@ export {
     getCars,
     getCarCategory,
     getRate,
-    createOrder
+    createOrder,
+    getOrder,
+    changeOrder,
+    reset
 };

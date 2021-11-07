@@ -6,7 +6,7 @@ import Header from "../../common/Header/Header";
 import SideBar from "../../common/SideBar/SideBar"
 import Step1 from "./Steps/Step1/Step1";
 import TabsMenu from "./TabsMenu/TabsMenu";
-import OrderInfo from "./OrderInfo/OrderInfo";
+import OrderInfo from "../PanelInfo/Container/OrderInfo/OrderInfo";
 
 import { createOrder, updateAccessibleTab, updateActiveTab, updateOrder } from "../../store/actions";
 import * as selectors from "../../store/selectors";
@@ -23,6 +23,7 @@ const OrderPage = () => {
     const order = useSelector(selectors.order)
     const activeTab = useSelector(selectors.activeTab)
     const accessibleTab = useSelector(selectors.accessibleTab)
+    const confirmedOrder = useSelector(selectors.confirmedOrder)
 
     const [orderConfirm, setOrderConfirm] = useState(false)
 
@@ -38,7 +39,6 @@ const OrderPage = () => {
     const onSubmit = () => {
         if (accessibleTab === activeTab)
             dispatch(updateAccessibleTab(accessibleTab + 1))
-
     }
 
     const onTabChange = (id) => {
@@ -73,12 +73,15 @@ const OrderPage = () => {
             isFullTank: order.additional.includes(1),
             isNeedChildChair: order.additional.includes(2),
             isRightWheel: order.additional.includes(3)
-
         }
         dispatch(createOrder(orderData))
         setOrderConfirm(false)
-
     }
+
+    useEffect(() => {
+        if (confirmedOrder.id)
+            history.push(`/order/${confirmedOrder.id}`)
+    }, [confirmedOrder.id])
 
     const onCancel = () =>
         setOrderConfirm(false)

@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom"
+import React, { useEffect } from "react";
+import { Link, useHistory } from "react-router-dom"
 
 import Header from "../../common/Header/Header";
 import SideBar from "../../common/SideBar/SideBar";
@@ -13,6 +13,13 @@ import styles from "./mainPage.module.sass"
 
 const MainPage = () => {
     const width = useCurrentWidth()
+    const history = useHistory()
+
+    useEffect(() => {
+        const orderId = localStorage.getItem('order_id')
+        if (orderId)
+            history.push(`/order/${orderId}`)
+    }, [])
 
     return (
         <>
@@ -43,7 +50,6 @@ const MainPage = () => {
                 {width >= 1024 && <MainSlider />}
             </div>
         </>
-
     )
 }
 

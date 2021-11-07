@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
 
 import * as selectors from "../../../../store/selectors";
@@ -14,21 +14,18 @@ const Step4 = () => {
     const selectedCar = useMemo(() => cars.find((item) => item.id === car), [cars, car])
     const newPath = getImgPath(selectedCar.thumbnail.path)
 
-    useEffect(() => {
-    }, [])
-
     return (
         <div className={styles.container}>
             <div>
                 <div className={styles.name}>
                     {selectedCar.name}
                 </div>
-                <div className={styles.number}>
+                {selectedCar.number && <div className={styles.number}>
                     {selectedCar.number}
-                </div>
-                <div className={styles.additional}>
+                </div>}
+                {selectedCar.tank && <div className={styles.additional}>
                     <span>Топливо</span> {selectedCar.tank}%
-                </div>
+                </div>}
                 <div className={styles.additional}>
                     <span>Доступна с</span> {formatDate(startDate)}
                 </div>

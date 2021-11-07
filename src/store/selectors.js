@@ -38,4 +38,6 @@ export const activeTab = state => state.activeTab
 
 export const accessibleTab = state => state.accessibleTab
 
-export const orderId = state => state.orderId
+export const error = state => state.error
+
+export const confirmedOrder = state => state.confirmedOrder
