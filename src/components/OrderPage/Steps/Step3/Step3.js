@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DatePicker from "react-datepicker";
 
@@ -27,6 +27,7 @@ const Step3 = ({ onChange, onSubmit }) => {
         return ['Любой', ...selectedCarColors]
     }, [car, cars]);
 
+    const [disabledEndDate, setDisabledEndDate] = useState(true)
 
     useEffect(() => {
         if (!startDate || !endDate)
@@ -58,11 +59,18 @@ const Step3 = ({ onChange, onSubmit }) => {
     }, [startDate, endDate])
 
     const setStartDate = (data) => {
+        setDisabledEndDate(false)
         onChange({
             startDate: data,
             endDate: null
         })
     }
+
+    useEffect(() => {
+        if (!startDate)
+            setDisabledEndDate(true)
+    }, [startDate])
+
     const setEndDate = (data) => {
         onChange({
             endDate: data
@@ -79,8 +87,6 @@ const Step3 = ({ onChange, onSubmit }) => {
                 additional: [...additionalOptions, id]
             })
     }
-
-
 
     const onClickColor = (item) => {
         onChange({
@@ -155,6 +161,7 @@ const Step3 = ({ onChange, onSubmit }) => {
                     filterTime={filterPassedTimeEnd}
                     selected={endDate}
                     onChange={(date) => setEndDate(date)}
+                    disabled={disabledEndDate}
                 />
             </div>
 

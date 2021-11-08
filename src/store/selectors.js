@@ -37,3 +37,7 @@ export const loading = state => state.loading
 export const activeTab = state => state.activeTab
 
 export const accessibleTab = state => state.accessibleTab
+
+export const error = state => state.error
+
+export const confirmedOrder = state => state.confirmedOrder

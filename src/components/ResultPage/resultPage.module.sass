@@ -1,0 +1,80 @@
+.container
+    display: flex
+    flex-direction: column
+    padding: 32px 64px 0 128px
+    min-height: 100vh
+
+.content
+    display: flex
+
+.orderId
+    border-top: 1px solid #EEEEEE
+    border-bottom: 1px solid #EEEEEE
+    padding: 8px 64px
+    margin: 32px -64px 0 -64px
+    font-weight: bold
+    font-size: 14px
+    line-height: 16px
+    color: #121212
+
+.title
+    font-size: 24px
+    line-height: 28px
+    color: #121212
+    margin-top: 32px
+
+.photo
+    width: 256px
+    object-fit: contain
+
+.orderCard
+    display: flex
+    justify-content: space-between
+
+.additional
+    font-size: 14px
+    line-height: 16px
+    color: #121212
+    margin-top: 8px
+
+    & span
+        font-weight: bold
+
+.name
+    font-size: 18px
+    line-height: 21px
+    color: #121212
+    margin-top: 16px
+
+.number
+    font-size: 18px
+    line-height: 21px
+    padding: 4px 8px
+    display: inline-block
+    margin-top: 8px
+    color: #121212
+    border: 1px solid #999999
+    border-radius: 4px
+
+.order
+    width: 70%
+
+@media (max-width: 1023px)
+    .orderCard
+        display: block
+
+    .photo
+        margin-top: 20px
+
+@media (max-width: 767px)
+    .container
+        padding: 0
+
+    .content
+        display: block
+        padding-left: 16px
+        padding-right: 16px
+
+    .orderId
+        margin: 123px 0 0 0
+        padding: 8px 16px
