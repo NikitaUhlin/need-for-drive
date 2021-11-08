@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 
 import * as selectors from "../../../../store/selectors"
@@ -23,6 +23,17 @@ const OrderInfo = ({ onClick, activeTab, order, onChange }) => {
     const car = useMemo(() => cars.find((item) => item.id === order.car), [cars, order.car])
     const selectRate = useMemo(() => rate.find((item) => item.id === order.selectRate), [rate, order.selectRate])
     const selectAdditional = useMemo(() => additional.filter((item) => order.additional.includes(item.id)), [order.additional])
+
+    const [isModalOpen, setIsModalOpen] = useState(false)
+
+    const onOpenModal = () => setIsModalOpen(true)
+
+    const onCloseModal = () => setIsModalOpen(false)
+
+    const onClickButton = () => {
+        onClick()
+        setIsModalOpen(false)
+    }
 
     let active = false
     switch (activeTab) {
@@ -88,6 +99,10 @@ const OrderInfo = ({ onClick, activeTab, order, onChange }) => {
             city={city && city.name}
             pickUp={pickUp && pickUp.address}
             car={car}
+            onOpenModal={onOpenModal}
+            onCloseModal={onCloseModal}
+            onClickButton={onClickButton}
+            isModalOpen={isModalOpen}
         />
     )
 }

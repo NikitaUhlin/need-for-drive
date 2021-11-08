@@ -10,6 +10,16 @@ const ResultInfo = ({ onClick }) => {
 
     const [buttonText, setButtonText] = useState('Отменить')
     const [buttonType, setButtonType] = useState('red')
+    const [isModalOpen, setIsModalOpen] = useState(false)
+
+    const onOpenModal = () => setIsModalOpen(true)
+
+    const onCloseModal = () => setIsModalOpen(false)
+
+    const onClickButton = () => {
+        onClick()
+        setIsModalOpen(false)
+    }
     useEffect(() => {
         if (confirmedOrder.orderStatusId.id === '5e26a1f5099b810b946c5d8c') {
             setButtonText('Сделать новый заказ')
@@ -32,6 +42,10 @@ const ResultInfo = ({ onClick }) => {
             city={confirmedOrder.cityId.name}
             pickUp={confirmedOrder.pointId.address}
             car={confirmedOrder.carId}
+            onOpenModal={onOpenModal}
+            onCloseModal={onCloseModal}
+            onClickButton={onClickButton}
+            isModalOpen={isModalOpen}
         />
     )
 }

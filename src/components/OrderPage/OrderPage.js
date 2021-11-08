@@ -16,6 +16,7 @@ import Step2 from "./Steps/Step2/Step2";
 import Step3 from "./Steps/Step3/Step3";
 import Step4 from "./Steps/Step4/Step4";
 import Modal from "../../common/Modal/Modal";
+import { transformOrder } from "../../utils/functions/transformOrder";
 
 const tabs = ['geolocation', 'model', 'additional', 'total']
 
@@ -59,21 +60,8 @@ const OrderPage = () => {
         else
             setOrderConfirm(true)
     }
-    const onOk = () => {
-        const orderData = {
-            orderStatusId: '5e26a1f0099b810b946c5d8b',
-            cityId: order.city,
-            pointId: order.pickUp,
-            carId: order.car,
-            color: order.selectColor,
-            dateFrom: new Date(order.startDate).getTime(),
-            dateTo: new Date(order.endDate).getTime(),
-            rateId: order.selectRate,
-            price: order.price,
-            isFullTank: order.additional.includes(1),
-            isNeedChildChair: order.additional.includes(2),
-            isRightWheel: order.additional.includes(3)
-        }
+    const onOrderAccept = () => {
+        const orderData = transformOrder(order)
         dispatch(createOrder(orderData))
         setOrderConfirm(false)
     }
@@ -83,7 +71,7 @@ const OrderPage = () => {
             history.push(`/order/${confirmedOrder.id}`)
     }, [confirmedOrder.id])
 
-    const onCancel = () =>
+    const onOrderCancel = () =>
         setOrderConfirm(false)
 
     return (
@@ -109,7 +97,7 @@ const OrderPage = () => {
                         order={order}
                     />
                 }
-                {orderConfirm && <Modal onOk={onOk} onCancel={onCancel} />}
+                {orderConfirm && <Modal onOk={onOrderAccept} onCancel={onOrderCancel} />}
             </div>
         </>
     )

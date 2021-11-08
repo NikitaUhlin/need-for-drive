@@ -18,29 +18,20 @@ const PanelInfo = ({
     selectRate,
     selectAdditional,
     price,
-    onClick,
     active,
     buttonText,
-    buttonType
+    buttonType,
+    onOpenModal,
+    onCloseModal,
+    onClickButton,
+    isModalOpen
 }) => {
-    const [isModalOpen, setIsModalOpen] = useState(false)
-
     const classNameOrderInfo = cx({
         [styles.container]: true,
         [styles.containerModal]: isModalOpen,
     })
 
     const rangeDate = endDate - startDate
-
-    const onOpenModal = () => setIsModalOpen(true)
-
-    const onCloseModal = () => setIsModalOpen(false)
-
-    const onClickButton = () => {
-        onClick()
-        setIsModalOpen(false)
-    }
-
     const difDays = Math.floor(rangeDate / (24 * 60 * 60 * 1000))
     const difHours = Math.floor((rangeDate / (24 * 60 * 60 * 1000) - difDays) * 24)
     const difMinutes = Math.floor(((rangeDate / (24 * 60 * 60 * 1000) - difDays) * 24 - difHours) * 60)
