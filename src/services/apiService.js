@@ -12,6 +12,22 @@ class ApiService {
         return this.api.get(url)
     }
 
+    post(url, body) {
+        return this.api.post(url, body)
+    }
+
+    put(url, body) {
+        return this.api.put(url, body)
+    }
+
+    changeOrder(orderId, body) {
+        return this.put(`order/${orderId}`, body)
+    }
+
+    createOrder(body) {
+        return this.post("order", body)
+    }
+
     getCities() {
         return this.get("city");
     }
@@ -28,6 +44,9 @@ class ApiService {
     }
     getRate() {
         return this.get("rate")
+    }
+    getOrder(id) {
+        return this.get(`order/${id}`)
     }
 }
 
